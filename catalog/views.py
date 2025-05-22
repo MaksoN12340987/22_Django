@@ -19,7 +19,7 @@ from django.http import HttpResponse
 # Create your views here.
 def about(request):
     logger_views.debug(request)
-    return render(request, 'first_project/about.html')
+    return render(request, 'first_project/home.html')
 
 def contact(request):
     logger_views.debug(request)
@@ -28,4 +28,4 @@ def contact(request):
         message = request.POST.get("message")
         
         return HttpResponse(f"Спасибо, {name}! Сообщение отправлено.")
-    return render(request, 'first_project/contact.html')
+    return render(request, 'first_project/contacts.html')
