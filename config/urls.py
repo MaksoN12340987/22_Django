@@ -17,7 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from catalog.apps import CatalogProjectConfig
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('catalog/', include('catalog.urls', namespace='catalog'))
+    path(f'{CatalogProjectConfig.name}/', include(f'{CatalogProjectConfig.name}.urls', namespace=f'{CatalogProjectConfig.name}'))
 ]

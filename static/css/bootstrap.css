@@ -1,11 +1,18 @@
 @charset "UTF-8";
 /*!
- * Bootstrap  v5.3.5 (https://getbootstrap.com/)
- * Copyright 2011-2025 The Bootstrap Authors
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+* Bootstrap  v5.3.5 (https://getbootstrap.com/)
+* Copyright 2011-2025 The Bootstrap Authors
+* Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+*/
 :root,
 [data-bs-theme=light] {
+  /* Цвет беграунда верхней строки */
+  --bs-primary-rgb-top-line: 4, 207, 207;
+
+  /* Цвет беграунда фетера */
+  --bs-primary-rgb-footer: 176, 176, 176;
+  
+  --bs-secondary-rgb: 5, 5, 5;
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
   --bs-purple: #6f42c1;
@@ -38,7 +45,6 @@
   --bs-light: #f8f9fa;
   --bs-dark: #212529;
   --bs-primary-rgb: 13, 110, 253;
-  --bs-secondary-rgb: 35, 35, 35;
   --bs-success-rgb: 25, 135, 84;
   --bs-info-rgb: 13, 202, 240;
   --bs-warning-rgb: 255, 193, 7;
@@ -3187,6 +3193,29 @@ textarea.form-control-lg {
   --bs-btn-disabled-border-color: #0d6efd;
   --bs-gradient: none;
 }
+
+
+
+
+.btn-outline-primary-top-line {
+  --bs-btn-color: #343a40;
+  --bs-btn-border-color: #fbff00;
+  --bs-btn-hover-color: #343a40;
+  --bs-btn-hover-bg: #fbff00;
+  --bs-btn-hover-border-color: #0d6efd;
+  --bs-btn-focus-shadow-rgb: 255, 170, 0;
+  --bs-btn-active-color: #000;
+  --bs-btn-active-bg: #fbff00;
+  --bs-btn-active-border-color: #fbff00;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #0d6efd;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: #0d6efd;
+  --bs-gradient: none;
+}
+
+
+
 
 .btn-outline-secondary {
   --bs-btn-color: #6c757d;
@@ -6832,7 +6861,7 @@ textarea.form-control-lg {
 }
 
 .text-bg-primary {
-  color: #fff !important;
+  color: #032830 !important;
   background-color: RGBA(var(--bs-primary-rgb), var(--bs-bg-opacity, 1)) !important;
 }
 
@@ -8797,6 +8826,26 @@ textarea.form-control-lg {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
 }
+
+
+
+
+
+
+.bg-primary-top-line {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-primary-rgb-top-line), var(--bs-bg-opacity)) !important;
+}
+
+
+.bg-primary-footer {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-primary-rgb-footer), var(--bs-bg-opacity)) !important;
+}
+
+
+
+
 
 .bg-secondary {
   --bs-bg-opacity: 1;

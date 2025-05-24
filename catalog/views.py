@@ -1,5 +1,7 @@
 import logging
 
+from catalog.apps import CatalogProjectConfig
+
 
 logger_views = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="w", encoding="UTF8")
@@ -17,15 +19,16 @@ from django.http import HttpResponse
 
 
 # Create your views here.
-def about(request):
+def home(request):
     logger_views.debug(request)
-    return render(request, 'first_project/home.html')
+    return render(request, f'{CatalogProjectConfig.name}/home.html')
 
-def contact(request):
+def contacts(request):
     logger_views.debug(request)
     if request.method == 'POST':
         name = request.POST.get("name")
+        phone = request.POST.get("phone")
         message = request.POST.get("message")
         
-        return HttpResponse(f"Спасибо, {name}! Сообщение отправлено.")
-    return render(request, 'first_project/contacts.html')
+        return render(request, f'{CatalogProjectConfig.name}/response.html')
+    return render(request, f'{CatalogProjectConfig.name}/contacts.html')
