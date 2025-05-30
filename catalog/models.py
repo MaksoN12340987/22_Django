@@ -1,6 +1,24 @@
 from django.db import models
 
 
+class Product(models.Model):
+    
+    class Meta:
+        verbose_name = "студент"
+        verbose_name_plural = "студенты"
+        ordering = ["last_name"]
+
+
+
+class Category(models.Model):
+    
+    class Meta:
+        verbose_name = "студент"
+        verbose_name_plural = "студенты"
+        ordering = ["last_name"]
+
+
+
 class Student(models.Model):
     FIRST_YEAR = "first"
     SECOND_YEAR = "second"
