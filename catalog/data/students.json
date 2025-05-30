@@ -1,0 +1,29 @@
+[
+{
+    "model": "catalog.student",
+    "pk": 1,
+    "fields": {
+        "first_name": "Лев",
+        "last_name": "Толстой",
+        "year": "first"
+    }
+},
+{
+    "model": "catalog.student",
+    "pk": 2,
+    "fields": {
+        "first_name": "Ivan",
+        "last_name": "Chebany",
+        "year": "second"
+    }
+},
+{
+    "model": "catalog.student",
+    "pk": 3,
+    "fields": {
+        "first_name": "Mxim",
+        "last_name": "Andreev",
+        "year": "third"
+    }
+}
+]
