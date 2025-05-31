@@ -1,4 +1,5 @@
 from typing import Any
+
 from django.db import models
 
 # from catalog.models import Product, Category
@@ -26,7 +27,7 @@ class Product(models.Model):
         on_delete=models.CASCADE,
         related_name="categories",
         max_length=200,
-        verbose_name="Категория"
+        verbose_name="Категория",
     )
     price = models.IntegerField(help_text="Цена", verbose_name="Цена")
     create_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")

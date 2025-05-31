@@ -23,13 +23,16 @@ def home(request):
     if request.data == "POST":
         return render(request, f"{CatalogProjectConfig.name}/home.html")
 
+
 def catalog(request):
     logger_views.debug(request)
     return render(request, f"{CatalogProjectConfig.name}/catalog.html")
 
+
 def orders(request):
     logger_views.debug(request)
     return render(request, f"{CatalogProjectConfig.name}/orders.html")
+
 
 def contacts(request):
     logger_views.debug(request)
