@@ -1,0 +1,54 @@
+[
+{
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+        "name": "Молоко",
+        "description": "",
+        "image": "",
+        "category": 1,
+        "price": 99,
+        "create_at": "2025-05-31T11:25:00.647Z",
+        "updated_at": null
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+        "name": "Сельдь",
+        "description": "",
+        "image": "",
+        "category": 2,
+        "price": 99,
+        "create_at": "2025-05-31T11:25:38.584Z",
+        "updated_at": null
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+        "name": "Макароны",
+        "description": "",
+        "image": "",
+        "category": 3,
+        "price": 99,
+        "create_at": "2025-05-31T11:25:43.184Z",
+        "updated_at": null
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+        "name": "Конфеты",
+        "description": "",
+        "image": "",
+        "category": 4,
+        "price": 99,
+        "create_at": "2025-05-31T11:25:47.304Z",
+        "updated_at": null
+    }
+}
+]
