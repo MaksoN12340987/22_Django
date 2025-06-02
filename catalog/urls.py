@@ -8,10 +8,10 @@ app_name = CatalogProjectConfig.name
 
 urlpatterns = [
     path("home/", views.home, name="home"),
-    path("catalog/", views.home, name="catalog"),
-    path("orders/", views.home, name="orders"),
+    path("catalog/", views.catalog, name="catalog"),
+    path("orders/", views.orders, name="orders"),
     path("contacts/", views.contacts, name="contacts"),
-    path("response/", views.home, name="response"),
+    path("response/", views.contacts, name="response"),
     path(
         f"{CatalogProjectConfig.name}/",
         views.contacts,
