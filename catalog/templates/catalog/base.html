@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Заказ товаров</title>
+    <title>{% block title %}Заказ товаров{% endblock %}</title>
     <link href="\static\css\bootstrap.css" rel="stylesheet">
     <script defer src="\static\js\bootstrap.bundle.js"></script>
   <body>
@@ -13,9 +13,8 @@
             <div class="col-2 vh-100 bg-dark text-white p-2">
             
                 <div class="d-flex align-items-center ms-3">
-                    <!--  href="/?img=bootstrap-logo-white.svg" -->
-                    <img src="\static\images\bootstrap-logo-white.svg" alt="https://getbootstrap.su/docs/5.0/assets/brand/bootstrap-logo-white.svg" width="40" height="32" class="d-inline-block">
-                    <div class="flex-grow-0"><h2 class="mt-1 ms-4">Меню</h2></div>
+                  <img src="\static\images\bootstrap-logo-white.svg" alt="https://getbootstrap.su/docs/5.0/assets/brand/bootstrap-logo-white.svg" width="40" height="32" class="d-inline-block">
+                  <div class="flex-grow-0"><h2 class="mt-1 ms-4">Меню</h2></div>
                 </div>
 
                 <div class="col ms-1 mb-3 me-2"><hr></div>
@@ -67,53 +66,13 @@
             <div class="col-10">
 
                 <div class="text-center p-4 mt-5">
-                    <h1>Главная</h1>
-                    <h4>Вы наxодитесь на сайте для продажи товаров</h4>
+                  {% block page_title %}Заказ товаров{% endblock %}
                 </div>
 
                 <div class="container-fluid text-center p-4">
-                    <div class="row row-cols-3">
+                  
+                  {% block content %}{% endblock %}
                     
-                        <div class="col">
-                            <div class="card rounded-3 ms-5 me-5">
-                                <div class="card-header">
-                                Товар 1
-                                </div>
-                                <div class="card-body">
-                                <h5 class="card-title">100$</h5>
-                                <p class="card-text">Распродажа только сегодня скидка 15% на всё</p>
-                                <a href="" class="btn btn-dark">Купить</a>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <div class="col">
-                            <div class="card rounded-3 ms-5 me-5">
-                                <div class="card-header">
-                                Товар 1
-                                </div>
-                                <div class="card-body">
-                                <h5 class="card-title">100$</h5>
-                                <p class="card-text">Распродажа только сегодня скидка 15% на всё</p>
-                                <a href="" class="btn btn-dark">Купить</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <div class="card rounded-3 ms-5 me-5">
-                                <div class="card-header">
-                                Товар 1
-                                </div>
-                                <div class="card-body">
-                                <h5 class="card-title">100$</h5>
-                                <p class="card-text">Распродажа только сегодня скидка 15% на всё</p>
-                                <a href="" class="btn btn-dark">Купить</a>
-                                </div>
-                            </div>
-                        </div>
-                    
-                    </div>
                 </div>
 
             </div>

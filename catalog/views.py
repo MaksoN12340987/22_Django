@@ -1,5 +1,6 @@
 import logging
 
+from .models import Product
 from catalog.apps import CatalogProjectConfig
 
 logger_views = logging.getLogger(__name__)
@@ -20,20 +21,21 @@ from django.shortcuts import render
 # Create your views here.
 def home(request):
     logger_views.debug(request)
-    if 'home' in f'{request}':
-        return render(request, f"{CatalogProjectConfig.name}/home.html")
+    products = Product.objects.all()
+    context = {
+        'products': products,
+    }
+    return render(request, f"{CatalogProjectConfig.name}/home.html", context)
 
 
 def catalog(request):
     logger_views.debug(request)
-    if 'catalog' in f'{request}':
-        return render(request, f"{CatalogProjectConfig.name}/catalog.html")
+    return render(request, f"{CatalogProjectConfig.name}/catalog.html")
 
 
 def orders(request):
     logger_views.debug(request)
-    if 'orders' in f'{request}':
-        return render(request, f"{CatalogProjectConfig.name}/orders.html")
+    return render(request, f"{CatalogProjectConfig.name}/orders.html")
 
 
 def contacts(request):
