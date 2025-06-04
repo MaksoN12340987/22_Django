@@ -39,12 +39,13 @@ def orders(request):
 
 
 def contacts(request):
-    logger_views.debug(request)
+    logger_views.info(request)
     if request.method == "POST":
         name = request.POST.get("name")
         phone = request.POST.get("box")
-        message = request.POST.get("floatingTextarea2")
+        message = request.POST.get("Textarea2")
         logger_views.debug(name, phone, message)
 
         return render(request, f"{CatalogProjectConfig.name}/response.html")
-    return render(request, f"{CatalogProjectConfig.name}/contacts.html")
+    else:
+        return render(request, f"{CatalogProjectConfig.name}/contacts.html")
