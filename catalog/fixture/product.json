@@ -4,8 +4,8 @@
     "pk": 1,
     "fields": {
         "name": "Молоко",
-        "description": "",
-        "image": "",
+        "description": "Unpasteurised, unhomogenised and ORGANIC. From our small herd of 100% A2 cows who are fed on a 100% grass & pasture diet",
+        "image": "static/images/big_milk_1.webp",
         "category": 1,
         "price": 99,
         "create_at": "2025-05-31T11:25:00.647Z",

@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path # type: ignore
 
 from catalog.apps import CatalogProjectConfig
 
@@ -12,6 +12,7 @@ urlpatterns = [
     path("orders/", views.orders, name="orders"),
     path("contacts/", views.contacts, name="contacts"),
     path("response/", views.contacts, name="response"),
+    path("product/<int:product_id>", views.product, name="product"),
     path(
         f"{CatalogProjectConfig.name}/",
         views.contacts,

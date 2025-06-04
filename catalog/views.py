@@ -49,3 +49,11 @@ def contacts(request):
         return render(request, f"{CatalogProjectConfig.name}/response.html")
     else:
         return render(request, f"{CatalogProjectConfig.name}/contacts.html")
+
+def product(request, product_id):
+    logger_views.debug(request)
+    product = Product.objects.get(id=product_id)
+    context = {
+        'product': product,
+    }
+    return render(request, f"{CatalogProjectConfig.name}/product.html", context)
