@@ -1,6 +1,6 @@
 from typing import Any
 
-from django.db import models
+from django.db import models # type: ignore
 
 # from catalog.models import Product, Category
 

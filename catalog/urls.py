@@ -13,6 +13,7 @@ urlpatterns = [
     path("contacts/", views.contacts, name="contacts"),
     path("response/", views.contacts, name="response"),
     path("product/<int:product_id>", views.product, name="product"),
+    path("media/", views.home, name="media"),
     path(
         f"{CatalogProjectConfig.name}/",
         views.contacts,

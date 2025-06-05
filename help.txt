@@ -1,0 +1,7 @@
+python manage.py shell -i ipython
+
+product_5 = Product(name="Молоко свеже", description="", image="static/images/2748558.png", category=Category.objects.get(id=1), price=170)
+
+python -Xutf8 manage.py dumpdata catalog.Product --output catalog\fixture\product.json --indent 4
+
+python manage.py loaddata catalog\fixture\product.json --format json
