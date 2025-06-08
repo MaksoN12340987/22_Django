@@ -1,7 +1,8 @@
 import logging
 
-from django.shortcuts import render # type: ignore
-from django.views.generic import DetailView, ListView # type: ignore
+from django.shortcuts import render  # type: ignore
+from django.urls import reverse_lazy
+from django.views.generic import DetailView, ListView, DeleteView  # type: ignore
 
 from catalog.apps import CatalogProjectConfig
 
@@ -18,25 +19,30 @@ logger_views.addHandler(file_handler)
 logger_views.setLevel(logging.INFO)
 
 
-
 class ProductListView(ListView):
-    model = Category
-    template_name = f'{CatalogProjectConfig.name}/home.html'
-    context_object_name = 'products'
-    
-    
-    
+    model = Product
+    template_name = f"{CatalogProjectConfig.name}/home.html"
+    context_object_name = "products"
+
+
 class ProductDetailView(DetailView):
-    model = Category
-    template_name = f'{CatalogProjectConfig.name}/product.html'
-    context_object_name = 'product'
+    model = Product
+    template_name = f"{CatalogProjectConfig.name}/product.html"
+    context_object_name = "product"
+    
+    
+class ProductCategoriesListView(ListView):
+    model = Product
+    template_name = f"{CatalogProjectConfig.name}/catalog.html"
+    context_object_name = "products"
 
 
+class ProductDeleteView(DeleteView):
+    model = Product
+    template_name = f"{CatalogProjectConfig.name}/orders.html"
+    success_url = reverse_lazy('orders_delite')
 
 
-def catalog(request):
-    logger_views.debug(request)
-    return render(request, f"{CatalogProjectConfig.name}/catalog.html")
 
 
 def orders(request):
@@ -55,6 +61,7 @@ def contacts(request):
         return render(request, f"{CatalogProjectConfig.name}/response.html")
     else:
         return render(request, f"{CatalogProjectConfig.name}/contacts.html")
+
 
 # def product(request, product_id):
 #     logger_views.debug(request)
