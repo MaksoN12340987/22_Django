@@ -22,11 +22,11 @@
               <div class="card-body">
                 <h5 class="card-title">{{ product.price }}</h5>
                 <p class="card-text">{{ product.description }}</p>
-                <a href="../product/{{ product.id }}" class="btn btn-dark">Купить</a>
+                <a href="{% url 'product' product.pk %}" class="btn btn-dark">Купить</a>
               </div>
           </div>
       </div>
     {% endfor %}
 
   </div>
-{% endblock %}
+{% endblock %}y

@@ -1,7 +1,11 @@
 import logging
 
-from .models import Product
+from django.shortcuts import render # type: ignore
+from django.views.generic import DetailView, ListView # type: ignore
+
 from catalog.apps import CatalogProjectConfig
+
+from .models import Category, Product
 
 logger_views = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
@@ -14,18 +18,20 @@ logger_views.addHandler(file_handler)
 logger_views.setLevel(logging.INFO)
 
 
-from django.http import HttpResponse
-from django.shortcuts import render
+
+class ProductListView(ListView):
+    model = Category
+    template_name = f'{CatalogProjectConfig.name}/home.html'
+    context_object_name = 'products'
+    
+    
+    
+class ProductDetailView(DetailView):
+    model = Category
+    template_name = f'{CatalogProjectConfig.name}/product.html'
+    context_object_name = 'product'
 
 
-# Create your views here.
-def home(request):
-    logger_views.debug(request)
-    products = Product.objects.all()
-    context = {
-        'products': products,
-    }
-    return render(request, f"{CatalogProjectConfig.name}/home.html", context)
 
 
 def catalog(request):
@@ -50,10 +56,10 @@ def contacts(request):
     else:
         return render(request, f"{CatalogProjectConfig.name}/contacts.html")
 
-def product(request, product_id):
-    logger_views.debug(request)
-    product = Product.objects.get(id=product_id)
-    context = {
-        'product': product,
-    }
-    return render(request, f"{CatalogProjectConfig.name}/product.html", context)
+# def product(request, product_id):
+#     logger_views.debug(request)
+#     product = Product.objects.get(id=product_id)
+#     context = {
+#         'product': product,
+#     }
+#     return render(request, f"{CatalogProjectConfig.name}/product.html", context)

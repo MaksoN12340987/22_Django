@@ -1,6 +1,6 @@
 from typing import Any
 
-from django.db import models # type: ignore
+from django.db import models  # type: ignore
 
 # from catalog.models import Product, Category
 
@@ -32,7 +32,7 @@ class Product(models.Model):
     price = models.IntegerField(help_text="Цена", verbose_name="Цена")
     create_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(
-        null=True, verbose_name="Дата последнего изменения"
+        null=True, verbose_name="Дата последнего изменения", auto_now=True
     )
 
     def __str__(self) -> str:
