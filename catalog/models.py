@@ -46,8 +46,8 @@ class Product(models.Model):
 
 
 class Users(models.Model):
-    name = models.CharField(max_length=200, verbose_name="Имя", unique=True)
-    surname = models.CharField(max_length=200, verbose_name="Фамилия", unique=True)
+    name = models.CharField(max_length=200, verbose_name="Имя")
+    surname = models.CharField(max_length=200, verbose_name="Фамилия")
     image = models.ImageField(upload_to="photos/", verbose_name="Фотография", null=True)
     birthday = models.DateTimeField(verbose_name="День рождения")
     

@@ -53,13 +53,13 @@ class OrdersDelete(DeleteView):
 
 class CreateUser(CreateView):
     model = Users
-    fields = ['name', 'surname']
+    fields = ['name', 'surname', 'birthday']
     template_name = f"{CatalogProjectConfig.name}/contacts.html"
     success_url = reverse_lazy('catalog:users')
 
 
 
-class UsersView(CreateView):
+class UsersView(ListView):
     model = Users
     template_name = f"{CatalogProjectConfig.name}/users.html"
     context_object_name = "users"
