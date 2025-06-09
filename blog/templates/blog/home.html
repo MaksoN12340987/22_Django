@@ -1,7 +1,7 @@
 {% extends 'blog/base.html' %}
 
 {% block title %}
-    Главная
+    Новости
 {% endblock %}
 
 {% block page_title %}
@@ -9,8 +9,28 @@
 {% endblock %}
 
 {% block content %}
-  <div class="container-fluid text-center p-4">
+  <div class="row row-cols-2">
     
+    {% for post in posts %}
+      <div class="col mb-5">
+            <div class="card rounded-3 ms-5 me-5">
+                <div class="card-header">
+                  {{ post.title }}
+                </div>
+                <div class="card-body">
+                    {{ post.preview }}
+                    <p class="card-text">{{ post.content }}</p>
+                    <form method="get">
+                      {% csrf_token %}
+                      <a href="{% url 'blog:post' post.pk %}" class="btn btn-danger">
+                        Просмотреть
+                      </a>
+                    </form>
+                </div>
+            </div>
+      </div>
+    {% endfor %}
+
   </div>
 {% endblock %}
 

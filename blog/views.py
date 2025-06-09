@@ -1,8 +1,8 @@
 import logging
 
 from django.shortcuts import render  # type: ignore
-from django.urls import reverse_lazy # type: ignore
-from django.views.generic import ( # type: ignore
+from django.urls import reverse_lazy  # type: ignore
+from django.views.generic import (  # type: ignore
     CreateView,
     DeleteView,  # type: ignore
     DetailView,
@@ -23,8 +23,20 @@ logger_views.addHandler(file_handler)
 logger_views.setLevel(logging.INFO)
 
 
-
-class PostsListView(ListView):
+class PostsList(ListView):
     model = Posts
     template_name = f"{BlogProjectName.name}/home.html"
     context_object_name = "posts"
+
+
+class PostsDetail(DetailView):
+    model = Posts
+    template_name = f"{BlogProjectName.name}/post.html"
+    context_object_name = "post"
+
+
+class PostsCreate(CreateView):
+    model = Posts
+    template_name = f"{BlogProjectName.name}/create.html"
+    fields = ['title', 'content', 'number_views']
+    success_url = reverse_lazy('blog:home')

@@ -217,10 +217,22 @@
   background-image: var(--bs-form-select-bg-img-home);
 }
 
+
 .container-sm {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
-  width: 80%;
+  width: 65%;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+.container-sm {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 65%;
   padding-right: calc(var(--bs-gutter-x) * 0.5);
   padding-left: calc(var(--bs-gutter-x) * 0.5);
   margin-right: auto;
@@ -229,6 +241,12 @@
 
 .bg-primary-top-line {
   --bg-img-top-line: url("../images/zastavka_krugi.jpg");
+  --bs-bg-opacity: 1;
+  background-image: var(--bg-img-top-line);
+}
+
+.bg-title {
+  --bg-img-top-line: url("../images/grad_title.jpg");
   --bs-bg-opacity: 1;
   background-image: var(--bg-img-top-line);
 }

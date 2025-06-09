@@ -1,0 +1,26 @@
+[
+{
+    "model": "blog.posts",
+    "pk": 1,
+    "fields": {
+        "title": "Движение пригородных поездов",
+        "content": "1",
+        "preview": "",
+        "creation_date": "2025-06-09T21:09:11.671Z",
+        "publication_flag": false,
+        "number_views": 1
+    }
+},
+{
+    "model": "blog.posts",
+    "pk": 2,
+    "fields": {
+        "title": "Проезд запрещающего сигнала",
+        "content": "Проследование светофора с запрещающим показание является грубым нарушением инструкции по сигнализации",
+        "preview": "",
+        "creation_date": "2025-06-09T21:11:58.711Z",
+        "publication_flag": false,
+        "number_views": 1
+    }
+}
+]
