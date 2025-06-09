@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Блог{% endblock %}</title>
+    <link href="\static\css\bootstrap.css" rel="stylesheet">
+    <script defer src="\static\js\bootstrap.bundle.js"></script>
+  <body>
+    <div class="container-fluid-home text-center" >
+        
+        <div class="container-sm text-center">
+          <div class="row">
+
+            <div class="col-1 bg-primary-top-line vh-100"></div>
+            
+            <div class="col-10">
+  
+              <h1>Блог</h1>
+              {% block content %}{% endblock %}
+  
+            </div>
+
+            <div class="col-1 bg-primary-top-line vh-100"></div>
+  
+          </div>
+        </div>
+
+        <div class="fixed-bottom">
+          
+          {% block bottom %}{% endblock %}
+              
+        </div>
+    </div>
+    
+  </body>
+</html>

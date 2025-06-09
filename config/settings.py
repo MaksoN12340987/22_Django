@@ -4,6 +4,7 @@ from pathlib import Path
 from dotenv import load_dotenv  # type: ignore
 
 from catalog.apps import CatalogProjectConfig
+from blog.apps import BlogProjectName
 
 load_dotenv()
 
@@ -33,6 +34,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     f"{CatalogProjectConfig.name}",
+    f"{BlogProjectName.name}",
 ]
 
 MIDDLEWARE = [

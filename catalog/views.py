@@ -1,8 +1,13 @@
 import logging
 
 from django.shortcuts import render  # type: ignore
-from django.urls import reverse_lazy
-from django.views.generic import DetailView, ListView, DeleteView, CreateView  # type: ignore
+from django.urls import reverse_lazy # type: ignore
+from django.views.generic import ( # type: ignore
+    CreateView,
+    DeleteView,  # type: ignore
+    DetailView,
+    ListView,
+)
 
 from catalog.apps import CatalogProjectConfig
 
@@ -29,8 +34,8 @@ class ProductDetailView(DetailView):
     model = Product
     template_name = f"{CatalogProjectConfig.name}/product.html"
     context_object_name = "product"
-    
-    
+
+
 class ProductCategoriesListView(ListView):
     model = Product
     template_name = f"{CatalogProjectConfig.name}/catalog.html"
@@ -43,20 +48,17 @@ class OrdersView(ListView):
     context_object_name = "products"
 
 
-
 class OrdersDelete(DeleteView):
     model = Product
     template_name = f"{CatalogProjectConfig.name}/orders_delite.html"
-    success_url = reverse_lazy('catalog:orders')
-
+    success_url = reverse_lazy("catalog:orders")
 
 
 class CreateUser(CreateView):
     model = Users
-    fields = ['name', 'surname', 'birthday']
+    fields = ["name", "surname", "birthday"]
     template_name = f"{CatalogProjectConfig.name}/contacts.html"
-    success_url = reverse_lazy('catalog:users')
-
+    success_url = reverse_lazy("catalog:users")
 
 
 class UsersView(ListView):
