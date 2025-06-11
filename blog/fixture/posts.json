@@ -5,10 +5,10 @@
     "fields": {
         "title": "Движение пригородных поездов",
         "content": "1",
-        "preview": "",
+        "preview": "default.webp",
         "creation_date": "2025-06-09T21:09:11.671Z",
         "publication_flag": false,
-        "number_views": 1
+        "number_views": 0
     }
 },
 {
@@ -17,10 +17,34 @@
     "fields": {
         "title": "Проезд запрещающего сигнала",
         "content": "Проследование светофора с запрещающим показание является грубым нарушением инструкции по сигнализации",
-        "preview": "",
+        "preview": "default.webp",
         "creation_date": "2025-06-09T21:11:58.711Z",
-        "publication_flag": false,
-        "number_views": 1
+        "publication_flag": true,
+        "number_views": 0
+    }
+},
+{
+    "model": "blog.posts",
+    "pk": 3,
+    "fields": {
+        "title": "РЕКС",
+        "content": "Бренд регионального экспреса ЦППК",
+        "preview": "recs.jpg",
+        "creation_date": "2025-06-11T07:23:44.887Z",
+        "publication_flag": true,
+        "number_views": 0
+    }
+},
+{
+    "model": "blog.posts",
+    "pk": 6,
+    "fields": {
+        "title": "Движение первых поездов",
+        "content": "Движение первых поездов по линиям московского метрополитена производится с особой бдительностью и при включенном аварином и рабочим освещением",
+        "preview": "metro.jpeg",
+        "creation_date": "2025-06-11T09:03:51.033Z",
+        "publication_flag": true,
+        "number_views": 0
     }
 }
 ]

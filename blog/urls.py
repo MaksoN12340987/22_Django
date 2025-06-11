@@ -1,9 +1,9 @@
 from django.contrib import admin  # type: ignore
 from django.urls import path  # type: ignore
 
-from .views import PostsCreate, PostsDetail, PostsList
-
 from blog.apps import BlogProjectName
+
+from .views import PostsCreate, PostsDetail, PostsList
 
 app_name = BlogProjectName.name
 

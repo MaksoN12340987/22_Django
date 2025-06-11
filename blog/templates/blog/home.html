@@ -9,20 +9,28 @@
 {% endblock %}
 
 {% block content %}
-  <div class="row row-cols-2">
+  <div class="row row-cols-2 p-1">
     
     {% for post in posts %}
       <div class="col mb-5">
-            <div class="card rounded-3 ms-5 me-5">
-                <div class="card-header">
-                  {{ post.title }}
+        <div class="card rounded-3 ms-3 me-3 bg-post-card text-white-card">
+                <div class="card-header mt-1 text-post-title">
+                  <h5>{{ post.title }}</h5>
                 </div>
-                <div class="card-body">
-                    {{ post.preview }}
-                    <p class="card-text">{{ post.content }}</p>
-                    <form method="get">
+
+                <img src="/media/{{ post.preview }}" alt="">
+
+                <div class="card-body">                    
+                    <p class="card-text text-start" style="height: 7rem;">{{ post.content | truncatechars:100 }}</p>
+                    
+                    <div class="text-start bg-primary-footer text-white-card p-1">
+                        <p>Дата публикации: {{ post.creation_date | date:"d M Y" }}</p>
+                        <p>Просмотров {{ post.number_views }}</p>
+                    </div>
+                    
+                    <form method="get" class="text-start mt-2">
                       {% csrf_token %}
-                      <a href="{% url 'blog:post' post.pk %}" class="btn btn-danger">
+                      <a href="{% url 'blog:post' post.pk %}" class="btn btn-top-line">
                         Просмотреть
                       </a>
                     </form>
@@ -36,5 +44,27 @@
 
 
 {% block bottom %}
+  <div class="row p-2">
+    <div class="col-3"></div>
 
+    <div class="col-6">
+      <div class="row p-1">
+        <div class="col-4 mt-1">
+        </div>
+    
+        <div class="col-4 text-post-title">
+          <div class="d-grid gap-2">
+            <a href="{% url 'blog:create' %}" class="btn btn-success">Создать пост</a>
+          </div>
+        </div>
+    
+        <div class="col-4 mt-1">
+        </div>
+    
+      </div>
+    </div>
+
+    <div class="col-3"></div>
+
+  </div>
 {% endblock %}
