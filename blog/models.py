@@ -10,7 +10,7 @@ class Posts(models.Model):
     title = models.CharField(max_length=200, verbose_name="Заголовок", unique=True)
     content = models.TextField(null=True, blank=True, verbose_name="Содержимое")
     preview = models.ImageField(
-        upload_to=MEDIA_ROOT,
+        upload_to='blog/',
         verbose_name="Фотография",
         null=True,
     )
@@ -28,7 +28,7 @@ class Posts(models.Model):
     )
 
     def __str__(self) -> str:
-        return f"{self.name} {self.category}"
+        return self.title
 
     class Meta:
         verbose_name = "Пост"

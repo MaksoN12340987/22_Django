@@ -1,13 +1,10 @@
 import logging
 
 from django.shortcuts import render  # type: ignore
-from django.urls import reverse_lazy  # type: ignore
+from django.urls import reverse_lazy, reverse  # type: ignore
 from django.views.generic import DeleteView  # type: ignore
 from django.views.generic import (CreateView, DetailView,  # type: ignore
-                                  ListView)
-from django.urls import reverse
-
-from blog.apps import BlogProjectName
+                                  ListView, UpdateView)
 
 from .models import Posts
 
@@ -24,7 +21,7 @@ logger_views.setLevel(logging.INFO)
 
 class PostsList(ListView):
     model = Posts
-    template_name = f"{BlogProjectName.name}/home.html"
+    template_name = "blog/home.html"
     context_object_name = "posts"
 
     def get_queryset(self):
@@ -35,7 +32,7 @@ class PostsList(ListView):
 
 class PostsDetail(DetailView):
     model = Posts
-    template_name = f"{BlogProjectName.name}/post.html"
+    template_name = "blog/post.html"
     context_object_name = "post"
 
     def get_object(self, queryset=None):
@@ -45,10 +42,20 @@ class PostsDetail(DetailView):
         return object_post
 
 
+
 class PostsCreate(CreateView):
     model = Posts
-    template_name = f"{BlogProjectName.name}/create.html"
+    template_name = "blog/create.html"
     fields = ["title", "content", "number_views"]
+
+    success_url = reverse_lazy('blog:home')
+
+
+
+class PostsUpdate(UpdateView):
+    model = Posts
+    template_name = "blog/update.html"
+    fields = ["title", "content", "publication_flag", "preview"]
     
-    def form_valid(self, form):
-        return reverse("blog:post", args=[self.kwargs.get('pk')])
+    def get_success_url(self):
+        return reverse('blog:home', args=[self.kwargs.get('pk')])
