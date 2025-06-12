@@ -20,7 +20,7 @@ class Posts(models.Model):
     publication_flag = models.BooleanField(
         help_text="Признак", verbose_name="Признак", default=False
     )
-    number_views = models.IntegerField(
+    number_views = models.PositiveIntegerField(
         help_text="Количество просмотров",
         verbose_name="Количество просмотров",
         blank=True,
