@@ -55,6 +55,7 @@ class PostsCreate(CreateView):
 class PostsUpdate(UpdateView):
     model = Posts
     template_name = "blog/update.html"
+    context_object_name = "post"
     fields = ["title", "content", "publication_flag", "preview"]
     
     def get_success_url(self):
