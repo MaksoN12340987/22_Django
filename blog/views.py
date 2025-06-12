@@ -5,6 +5,7 @@ from django.urls import reverse_lazy  # type: ignore
 from django.views.generic import DeleteView  # type: ignore
 from django.views.generic import (CreateView, DetailView,  # type: ignore
                                   ListView)
+from django.urls import reverse
 
 from blog.apps import BlogProjectName
 
@@ -49,5 +50,5 @@ class PostsCreate(CreateView):
     template_name = f"{BlogProjectName.name}/create.html"
     fields = ["title", "content", "number_views"]
     
-    success_url = reverse_lazy(Posts.pk)
-    
+    def form_valid(self, form):
+        return reverse("blog:post", args=[self.kwargs.get('pk')])
