@@ -65,6 +65,4 @@ class PostsDelete(DeleteView):
     model = Posts
     template_name = "blog/delite.html"
     context_object_name = "post"
-    
-    def get_success_url(self):
-        return reverse('blog:home')
+    success_url = reverse_lazy('blog:home')
