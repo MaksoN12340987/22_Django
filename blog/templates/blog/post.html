@@ -9,13 +9,21 @@
 {% endblock %}
 
 {% block content %}
-  <div class="card rounded-3 bg-dark text-white">
+  <div class="card rounded-3 bg-dark text-white  p-3">
     
-    <img src="blog/media/{{ post.preview }}" class="rounded-3" alt="/media/not_found.png">
+    <img src="/media/{{ post.preview }}" class="rounded-3" alt="/media/not_found.png">
           
     <div class="card-body mt-2 p-3 rounded-3">
       <p>{{ post.content }}</p>
     </div>
+
+    <a href="{% url 'blog:update' post.pk %}" class="btn btn-success ms-5 me-5 mb-3">
+      Обновление контента поста
+    </a>
+
+    <a href="{% url 'blog:delite' post.pk %}" class="btn btn-warning ms-5 me-5">
+      Удаление поста полностью
+    </a>
 
   </div>
 {% endblock %}

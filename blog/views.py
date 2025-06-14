@@ -4,7 +4,7 @@ from django.shortcuts import render  # type: ignore
 from django.urls import reverse_lazy, reverse  # type: ignore
 from django.views.generic import DeleteView  # type: ignore
 from django.views.generic import (CreateView, DetailView,  # type: ignore
-                                  ListView, UpdateView)
+                                  ListView, UpdateView, DeleteView)
 
 from .models import Posts
 
@@ -60,3 +60,10 @@ class PostsUpdate(UpdateView):
     
     def get_success_url(self):
         return reverse('blog:home', args=[self.kwargs.get('pk')])
+
+
+
+class PostsDelete(DeleteView):
+    model = Posts
+    template_name = "blog/delite.html"
+    context_object_name = "post"

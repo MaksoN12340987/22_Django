@@ -1,74 +1,86 @@
 [
-{
-    "model": "blog.posts",
-    "pk": 1,
-    "fields": {
-        "title": "Движение пригородных поездов",
-        "content": "1",
-        "preview": "default.webp",
-        "creation_date": "2025-06-09T21:09:11.671Z",
-        "publication_flag": false,
-        "number_views": 0
+    {
+        "model": "blog.posts",
+        "pk": 1,
+        "fields": {
+            "title": "Движение пригородных поездов",
+            "content": "1",
+            "preview": "default.webp",
+            "creation_date": "2025-06-09T21:09:11.671Z",
+            "publication_flag": false,
+            "number_views": 1
+        }
+    },
+    {
+        "model": "blog.posts",
+        "pk": 2,
+        "fields": {
+            "title": "Проезд запрещающего сигнала",
+            "content": "Проследование светофора с запрещающим показание является грубым нарушением инструкции по сигнализации",
+            "preview": "435690.jpg",
+            "creation_date": "2025-06-09T21:11:58.711Z",
+            "publication_flag": true,
+            "number_views": 4
+        }
+    },
+    {
+        "model": "blog.posts",
+        "pk": 3,
+        "fields": {
+            "title": "РЕКС",
+            "content": "Бренд регионального экспреса ЦППК",
+            "preview": "recs.jpg",
+            "creation_date": "2025-06-11T07:23:44.887Z",
+            "publication_flag": true,
+            "number_views": 0
+        }
+    },
+    {
+        "model": "blog.posts",
+        "pk": 4,
+        "fields": {
+            "title": "Движение первых поездов",
+            "content": "Движение первых поездов по линиям московского метрополитена производится с особой бдительностью и при включенном аварином и рабочим освещением",
+            "preview": "metro.jpeg",
+            "creation_date": "2025-06-11T09:03:51.033Z",
+            "publication_flag": true,
+            "number_views": 11
+        }
+    },
+    {
+        "model": "blog.posts",
+        "pk": 5,
+        "fields": {
+            "title": "Hellov world",
+            "content": "!",
+            "preview": "",
+            "creation_date": "2025-06-11T21:55:13.132Z",
+            "publication_flag": false,
+            "number_views": 1
+        }
+    },
+    {
+        "model": "blog.posts",
+        "pk": 6,
+        "fields": {
+            "title": "Окончание движения",
+            "content": "Последний поезд с конечных станций отправляется в 01 час 03 мин ночи, этот поезд является последним с пассажирами.\r\nВсе станции в 1 час ночи закрываются на вход и работают только на выход пассажиров, после прохода последнего с пассажирами и проверки станции на наличие посторонних, если таковых не выявлено станция закрывается на выход.",
+            "preview": "",
+            "creation_date": "2025-06-12T06:19:08.230Z",
+            "publication_flag": true,
+            "number_views": 1
+        }
+    },
+    {
+        "model": "blog.posts",
+        "pk": 7,
+        "fields": {
+            "title": "15 мая 1935 года",
+            "content": "В этот день Московский метрополитен открыл свои двери для пассажиров и начал эксплуатацию 1ой очереди строительства, 13 станций и почти 54 километра позволили разгрузить транспорт Москвы и позволить людям быстрее добираться до работы.",
+            "preview": "",
+            "creation_date": "2025-06-12T17:15:00.659Z",
+            "publication_flag": false,
+            "number_views": 1
+        }
     }
-},
-{
-    "model": "blog.posts",
-    "pk": 2,
-    "fields": {
-        "title": "Проезд запрещающего сигнала",
-        "content": "Проследование светофора с запрещающим показание является грубым нарушением инструкции по сигнализации",
-        "preview": "default.webp",
-        "creation_date": "2025-06-09T21:11:58.711Z",
-        "publication_flag": true,
-        "number_views": 1
-    }
-},
-{
-    "model": "blog.posts",
-    "pk": 3,
-    "fields": {
-        "title": "РЕКС",
-        "content": "Бренд регионального экспреса ЦППК",
-        "preview": "recs.jpg",
-        "creation_date": "2025-06-11T07:23:44.887Z",
-        "publication_flag": true,
-        "number_views": 0
-    }
-},
-{
-    "model": "blog.posts",
-    "pk": 6,
-    "fields": {
-        "title": "Движение первых поездов",
-        "content": "Движение первых поездов по линиям московского метрополитена производится с особой бдительностью и при включенном аварином и рабочим освещением",
-        "preview": "metro.jpeg",
-        "creation_date": "2025-06-11T09:03:51.033Z",
-        "publication_flag": true,
-        "number_views": 4
-    }
-},
-{
-    "model": "blog.posts",
-    "pk": 7,
-    "fields": {
-        "title": "Hellov world",
-        "content": "!",
-        "preview": "",
-        "creation_date": "2025-06-11T21:55:13.132Z",
-        "publication_flag": false,
-        "number_views": 0
-    }
-},
-{
-    "model": "blog.posts",
-    "pk": 8,
-    "fields": {
-        "title": "Окончание движения",
-        "content": "Последний поезд с конечных станций отправляется в 01 час 03 мин ночи, этот поезд является последним с пассажирами.\r\nВсе станции в 1 час ночи закрываются на вход и работают только на выход пассажиров, после прохода последнего с пассажирами и проверки станции на наличие посторонних, если таковых не выявлено станция закрывается на выход.",
-        "preview": "",
-        "creation_date": "2025-06-12T06:19:08.230Z",
-        "publication_flag": true,
-        "number_views": 0
-    }
-}
-]
+]    
