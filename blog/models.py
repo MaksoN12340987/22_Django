@@ -10,10 +10,9 @@ class Posts(models.Model):
     title = models.CharField(max_length=200, verbose_name="Заголовок", unique=True)
     content = models.TextField(null=True, blank=True, verbose_name="Содержимое")
     preview = models.ImageField(
-        upload_to='blog/',
+        upload_to=MEDIA_ROOT,
         verbose_name="Фотография",
         null=True,
-        blank=True
     )
     creation_date = models.DateTimeField(
         auto_now_add=True, verbose_name="Дата создания"
@@ -21,7 +20,7 @@ class Posts(models.Model):
     publication_flag = models.BooleanField(
         help_text="Признак", verbose_name="Признак", default=False
     )
-    number_views = models.PositiveIntegerField(
+    number_views = models.IntegerField(
         help_text="Количество просмотров",
         verbose_name="Количество просмотров",
         blank=True,
@@ -29,7 +28,7 @@ class Posts(models.Model):
     )
 
     def __str__(self) -> str:
-        return self.title
+        return f"{self.name} {self.category}"
 
     class Meta:
         verbose_name = "Пост"
