@@ -13,6 +13,7 @@ class Posts(models.Model):
         upload_to='blog/',
         verbose_name="Фотография",
         null=True,
+        blank=True
     )
     creation_date = models.DateTimeField(
         auto_now_add=True, verbose_name="Дата создания"

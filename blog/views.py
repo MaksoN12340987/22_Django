@@ -1,8 +1,6 @@
 import logging
 
-from django.shortcuts import render  # type: ignore
 from django.urls import reverse_lazy, reverse  # type: ignore
-from django.views.generic import DeleteView  # type: ignore
 from django.views.generic import (CreateView, DetailView,  # type: ignore
                                   ListView, UpdateView, DeleteView)
 
@@ -46,7 +44,7 @@ class PostsDetail(DetailView):
 class PostsCreate(CreateView):
     model = Posts
     template_name = "blog/create.html"
-    fields = ["title", "content", "number_views"]
+    fields = ["title", "content", "number_views", "publication_flag"]
 
     success_url = reverse_lazy('blog:home')
 
@@ -59,11 +57,12 @@ class PostsUpdate(UpdateView):
     fields = ["title", "content", "publication_flag", "preview"]
     
     def get_success_url(self):
-        return reverse('blog:home', args=[self.kwargs.get('pk')])
-
+        return reverse('blog:post', args=[self.kwargs.get('pk')])
+# end_metro.jpg
 
 
 class PostsDelete(DeleteView):
     model = Posts
     template_name = "blog/delite.html"
     context_object_name = "post"
+    success_url = reverse_lazy('blog:home')

@@ -10,7 +10,7 @@ app_name = BlogProjectName.name
 urlpatterns = [
     path("home/", PostsList.as_view(), name="home"),
     path("home/<int:pk>/", PostsDetail.as_view(), name="post"),
-    path("home/<int:pk>/update/", PostsUpdate.as_view(), name="update"),
+    path("update/<int:pk>/", PostsUpdate.as_view(), name="update"),
     path("create/", PostsCreate.as_view(), name="create"),
     path("home/<int:pk>/delite/", PostsDelete.as_view(), name="delite"),
 ]
