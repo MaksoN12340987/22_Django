@@ -1,9 +1,15 @@
 import logging
 
-from django.urls import reverse_lazy, reverse  # type: ignore
-from django.views.generic import (CreateView, DetailView,  # type: ignore
-                                  ListView, UpdateView, DeleteView)
+from django.urls import reverse, reverse_lazy  # type: ignore
+from django.views.generic import (  # type: ignore
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    UpdateView,
+)
 
+from .forms import PostForm
 from .models import Posts
 
 logger_views = logging.getLogger(__name__)
@@ -25,7 +31,6 @@ class PostsList(ListView):
     def get_queryset(self):
         # Получаем только активные объекты
         return Posts.objects.filter(publication_flag=True)
-        
 
 
 class PostsDetail(DetailView):
@@ -40,14 +45,12 @@ class PostsDetail(DetailView):
         return object_post
 
 
-
 class PostsCreate(CreateView):
     model = Posts
     template_name = "blog/create.html"
-    fields = ["title", "content", "number_views", "publication_flag"]
+    form_class = PostForm
 
-    success_url = reverse_lazy('blog:home')
-
+    success_url = reverse_lazy("blog:home")
 
 
 class PostsUpdate(UpdateView):
@@ -55,9 +58,11 @@ class PostsUpdate(UpdateView):
     template_name = "blog/update.html"
     context_object_name = "post"
     fields = ["title", "content", "publication_flag", "preview"]
-    
+
     def get_success_url(self):
-        return reverse('blog:post', args=[self.kwargs.get('pk')])
+        return reverse("blog:post", args=[self.kwargs.get("pk")])
+
+
 # end_metro.jpg
 
 
@@ -65,4 +70,4 @@ class PostsDelete(DeleteView):
     model = Posts
     template_name = "blog/delite.html"
     context_object_name = "post"
-    success_url = reverse_lazy('blog:home')
+    success_url = reverse_lazy("blog:home")

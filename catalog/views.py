@@ -3,8 +3,7 @@ import logging
 from django.shortcuts import render  # type: ignore
 from django.urls import reverse_lazy  # type: ignore
 from django.views.generic import DeleteView  # type: ignore
-from django.views.generic import (CreateView, DetailView,  # type: ignore
-                                  ListView)
+from django.views.generic import CreateView, DetailView, ListView  # type: ignore
 
 from catalog.apps import CatalogProjectConfig
 
