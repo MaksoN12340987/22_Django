@@ -1,11 +1,15 @@
-from django import forms  # type: ignore
+from django import forms
+
+from Django.blog.models import Posts  # type: ignore
 
 
-class PostForm(forms.Form):
-    post_name = forms.CharField(max_length=100, label="Название поста", required=True)
-    post_description = forms.EmailField(
-        label="Описание поста", initial="Опшите новость", required=False
-    )
-    post_view = forms.CharField(
-        widget=forms.CheckboxInput, label="Видно всем", required=True
-    )
+class CreatePostForm(forms.Form):
+    class Meta:
+        model = Posts
+        fields = ['title', 'content', 'publication_flag']
+
+
+class UpdatePostForm(forms.Form):
+    class Meta:
+        model = Posts
+        fields = ['title', 'content', 'publication_flag']
