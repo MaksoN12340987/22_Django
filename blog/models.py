@@ -1,5 +1,3 @@
-from typing import Any
-
 from django.db import models  # type: ignore
 
 # from PIL import Image # type: ignore

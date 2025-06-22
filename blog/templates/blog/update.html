@@ -13,10 +13,12 @@
 
   <div class="card rounded-3 bg-dark text-white p-3">
     
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
-            <div class="row mt-2 p-1">
+            {{ form.as_p }}
+
+            <!-- <div class="row mt-2 p-1">
 
               <div class="col-5 text-start mb-3">
                 <label for="id_title">Заголовок:</label>
@@ -41,7 +43,7 @@
                 <h6>Укажите путь к файлу:</h6>
                 <input type="str" name="preview" class="mt-3">
               </div>
-            </div>
+            </div> -->
 
             <button type="submit" class="btn btn-primary">Отправить</button>
         </form>
