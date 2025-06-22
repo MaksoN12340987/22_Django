@@ -1,6 +1,6 @@
 from django import forms
 
-from Django.blog.models import Posts  # type: ignore
+from .models import Posts  # type: ignore
 
 
 class CreatePostForm(forms.Form):
