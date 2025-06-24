@@ -22,7 +22,17 @@
         </form>
     
     </div>
-</div>
+    
+    <div class="card rounded-3 bg-dark text-white">
+      
+      <div class="d-grid text-post-title p-4 ms-5 me-5">
+        <div class="d-grid gap-2">
+          <a href="{% url 'blog:delete' post.pk %}" class="btn btn-warning">Можно и удалить пост полностью</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
 {% endblock %}
 
 
