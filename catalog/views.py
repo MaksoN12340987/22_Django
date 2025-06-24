@@ -1,13 +1,13 @@
 import logging
 
-from django.shortcuts import render  # type: ignore
 from django.urls import reverse_lazy  # type: ignore
 from django.views.generic import DeleteView  # type: ignore
 from django.views.generic import CreateView, DetailView, ListView  # type: ignore
 
 from catalog.apps import CatalogProjectConfig
 
-from .models import Category, Product, Users
+from .models import Product, Users
+from .forms import ContactForm
 
 logger_views = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
@@ -52,7 +52,7 @@ class OrdersDelete(DeleteView):
 
 class CreateUser(CreateView):
     model = Users
-    fields = ["name", "surname", "birthday"]
+    form_class = ContactForm
     template_name = f"{CatalogProjectConfig.name}/contacts.html"
     success_url = reverse_lazy("catalog:users")
 

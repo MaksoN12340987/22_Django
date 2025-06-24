@@ -40,6 +40,35 @@
 
 
 
+  /* Contact-form-catalog */
+  --body-color-catalog: #ff0000;
+
+  --tertiary-bg-catalog: #d4d4d4;
+
+  --border-color-catalog: #ffa2a2;
+
+  --tertiary-bg-catalog-upload-button: #5f5f5f;
+
+  --border-radius-catalog: 0.10rem;
+
+  --bs-border-width-catalog: 1px;
+
+  --secondary-color-catalog: rgba(0, 0, 0, 0.671);
+
+  --secondary-bg-catalog-hover-not: #ffffff;
+
+  --secondary-bg-catalog-disabled: #rgba(0, 0, 0)
+
+  --body-color-catalog-webkit-file-upload-button: #ff0000;
+
+  --tertiary-bg-catalog-webkit-file-upload-button: #ff0000;
+
+  --body-bg-catalog-focus: #ffffff;
+
+
+
+
+
 
 
 
@@ -531,6 +560,108 @@
   color: #6c757d;
 }
 
+
+
+
+
+.contact-form-catalog {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--body-color-catalog);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: var(--tertiary-bg-catalog);
+  background-clip: padding-box;
+  border: var(--bs-border-width) solid var(--border-color-catalog);
+  border-radius: var(--border-radius-catalog);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-form-catalog {
+    transition: none;
+  }
+}
+.contact-form-catalog[type=file] {
+  overflow: hidden;
+}
+.contact-form-catalog[type=file]:not(:disabled):not([readonly]) {
+  cursor: pointer;
+}
+.contact-form-catalog:focus {
+  color: var(--body-color-catalog);
+  background-color: var(--body-bg-catalog-focus);
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgb(255, 0, 0);
+}
+.contact-form-catalog::-webkit-date-and-time-value {
+  min-width: 85px;
+  height: 1.5em;
+  margin: 0;
+}
+.contact-form-catalog::-webkit-datetime-edit {
+  display: block;
+  padding: 0;
+}
+.contact-form-catalog::placeholder {
+  color: var(--secondary-color-catalog);
+  opacity: 1;
+}
+.contact-form-catalog:disabled {
+  background-color: var(--secondary-bg-catalog-disabled);
+  opacity: 1;
+}
+.contact-form-catalog::-webkit-file-upload-button {
+  padding: 0.375rem 0.75rem;
+  margin: -0.375rem -0.75rem;
+  -webkit-margin-end: 0.75rem;
+  margin-inline-end: 0.75rem;
+  color: var(--body-color-catalog-webkit-file-upload-button);
+  background-color: var(--tertiary-bg-catalog-webkit-file-upload-button);
+  pointer-events: none;
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
+  border-inline-end-width: var(--bs-border-width);
+  border-radius: 0;
+  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.contact-form-catalog::file-selector-button {
+  padding: 0.375rem 0.75rem;
+  margin: -0.375rem -0.75rem;
+  -webkit-margin-end: 0.75rem;
+  margin-inline-end: 0.75rem;
+  color: var(--body-color-catalog-webkit-file-upload-button);
+  background-color: var(--tertiary-bg-catalog-webkit-file-upload-button);
+  pointer-events: none;
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
+  border-inline-end-width: var(--border-color-catalog);
+  border-radius: 0;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-form-catalog::-webkit-file-upload-button {
+    -webkit-transition: none;
+    transition: none;
+  }
+  .contact-form-catalog::file-selector-button {
+    transition: none;
+  }
+}
+.contact-form-catalog:hover:not(:disabled):not([readonly])::-webkit-file-upload-button {
+  background-color: var(--secondary-bg-catalog-hover-not);
+}
+.contact-form-catalog:hover:not(:disabled):not([readonly])::file-selector-button {
+  background-color: var(--secondary-bg-catalog-hover-not);
+}
 
 
 

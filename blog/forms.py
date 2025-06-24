@@ -78,6 +78,8 @@ class UpdatePostForm(forms.ModelForm):
             'class': 'form-check-input'
         })
 
+
+
     def clean(self):
         data_array = super().clean()
         title = data_array.get("title")
