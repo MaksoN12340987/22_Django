@@ -8,63 +8,67 @@ from config.settings import WORDS_PROHIBITED # type: ignore
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ["name", "surname", "birthday", "image"]
+        fields = ["name", "description", "price", "image", "category"]
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
         self.fields['name'].widget.attrs.update({
             'class': 'contact-form-catalog',
-            'placeholder': 'Введите имя'
+            'placeholder': 'Введите наименование продукта'
         })
-        self.fields['surname'].widget.attrs.update({
+        self.fields['description'].widget.attrs.update({
             'class': 'contact-form-catalog',
-            'placeholder': 'Введите фамилию'
+            'placeholder': 'Введите описание продукта'
         })
-        self.fields['birthday'].widget.attrs.update({
+        self.fields['price'].widget.attrs.update({
             'class': 'contact-form-catalog',
             'type': 'date'
         })
         self.fields['image'].widget.attrs.update({
-            'class': 'form-check'
+            'class': 'img'
         })
 
     def clean(self):
         data_array = super().clean()
         name = data_array.get("name")
-        surname = data_array.get("surname")
+        description = data_array.get("description")
 
-        if name == surname:
-            self.add_error("content", "Имя и Фамилия совпадают")
+        if name.lower() in WORDS_PROHIBITED: # type: ignore
+            self.add_error("name", "В наименовании продукта присутствуют недопустимые слова")
+        elif description.lower() in WORDS_PROHIBITED: # type: ignore
+            self.add_error("description", "В описании продукта присутствуют недопустимые слова")
 
         repetitions_name = 0
         item = ""
-        for i, value in enumerate(name):
+        for i, value in enumerate(name): # type: ignore
             if i > 0:
                 if item == value:
-                    repetitions += 1
+                    repetitions_name += 1
                 item = value
             elif i == 0:
                 item = value
 
-        repetitions_surname = 0
+        repetitions_description = 0
         item = ""
-        for i, value in enumerate(surname):
+        for i, value in enumerate(description): # type: ignore
             if i > 0:
                 if item == value:
-                    repetitions += 1
+                    repetitions_description += 1
                 item = value
             elif i == 0:
                 item = value
 
-        if repetitions_name or repetitions_surname > 5:
-            self.add_error("content", "Странно много повторяющихся символов...")
+        if repetitions_name > 5:
+            self.add_error("name", "Странно много повторяющихся символов...")
+        elif repetitions_description > 5:
+            self.add_error("description", "Странно много повторяющихся символов...")
 
         return data_array
 
     def clean_price(self):
         price = self.cleaned_data.get('price')
         if price < 0: # type: ignore
-            self.add_error('price', '')
+            self.add_error('price', 'Цена продукта не должна быть отрицательной')
         
         return price

@@ -1,6 +1,6 @@
 from django.contrib import admin  # type: ignore
 
-from .models import Category, Product, Users
+from .models import Category, Product
 
 
 @admin.register(Product)
@@ -27,17 +27,17 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ("name",)
 
 
-@admin.register(Users)
-class UsersAdmin(admin.ModelAdmin):
-    list_display = (
-        "name",
-        "surname",
-        "birthday",
-    )
-    list_filter = (
-        "surname",
-        "surname",
-        "birthday",
-        "updated_at",
-    )
-    search_fields = ("name",)
+# @admin.register(Users)
+# class UsersAdmin(admin.ModelAdmin):
+#     list_display = (
+#         "name",
+#         "surname",
+#         "birthday",
+#     )
+#     list_filter = (
+#         "surname",
+#         "surname",
+#         "birthday",
+#         "updated_at",
+#     )
+#     search_fields = ("name",)

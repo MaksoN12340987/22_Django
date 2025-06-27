@@ -21,7 +21,7 @@ class Category(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=200, verbose_name="Наименование", unique=True)
     description = models.TextField(null=True, blank=True, verbose_name="Описание")
-    image = models.ImageField(upload_to="photos/", verbose_name="Фотография", null=True)
+    image = models.ImageField(upload_to="photos/", verbose_name="Фотография", blank=True, null=True)
     category = models.ForeignKey(
         Category,
         on_delete=models.CASCADE,
@@ -44,21 +44,21 @@ class Product(models.Model):
         ordering = ["name"]
 
 
-class Users(models.Model):
-    name = models.CharField(max_length=200, verbose_name="Имя")
-    surname = models.CharField(max_length=200, verbose_name="Фамилия")
-    image = models.ImageField(upload_to="photos/", verbose_name="Фотография", null=True)
-    birthday = models.DateTimeField(verbose_name="День рождения")
+# class Users(models.Model):
+#     name = models.CharField(max_length=200, verbose_name="Имя")
+#     surname = models.CharField(max_length=200, verbose_name="Фамилия")
+#     image = models.ImageField(upload_to="photos/", verbose_name="Фотография", null=True)
+#     birthday = models.DateTimeField(verbose_name="День рождения")
 
-    create_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
-    updated_at = models.DateTimeField(
-        null=True, verbose_name="Дата последнего изменения", auto_now=True
-    )
+#     create_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+#     updated_at = models.DateTimeField(
+#         null=True, verbose_name="Дата последнего изменения", auto_now=True
+#     )
 
-    def __str__(self) -> str:
-        return f"{self.name} {self.category}"
+#     def __str__(self) -> str:
+#         return f"{self.name} {self.category}"
 
-    class Meta:
-        verbose_name = "Пользователь"
-        verbose_name_plural = "Пользователи"
-        ordering = ["name"]
+#     class Meta:
+#         verbose_name = "Пользователь"
+#         verbose_name_plural = "Пользователи"
+#         ordering = ["name"]

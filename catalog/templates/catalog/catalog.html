@@ -21,12 +21,12 @@
               <div class="card ms-5 me-5">
         
                 <div class="d-flex">
-                  <img src="https://www.rolarite.com/wp-content/uploads/2021/03/cart-logo.jpg" class="card-img-top" alt="...">
+                  <img src="/media/{{ product.name }}" class="card-img-top" alt="...">
                 </div>
         
                 <div class="card-body">
-                  <h5 class="card-title">Особое обращение с заголовком</h5>
-                  <p class="card-text">С вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту.</p>
+                  <h5 class="card-title">{{ product.name }}</h5>
+                  <p class="card-text">{{ product.description }}</p>
                   <div class="btn-group">
                     <a href="{% url 'catalog:product' product.pk %}" class="btn btn-outline-secondary" aria-current="page">Wiev</a>
                     <a href="{% url 'catalog:orders' %}" class="btn btn-outline-secondary" aria-current="page">Edit</a>
@@ -45,12 +45,12 @@
               <div class="card ms-5 me-5">
         
                 <div class="d-flex">
-                  <img src="https://www.rolarite.com/wp-content/uploads/2021/03/cart-logo.jpg" class="card-img-top" alt="...">
+                  <img src="/media/{{ product.image }}" class="card-img-top" alt="...">
                 </div>
         
                 <div class="card-body">
-                  <h5 class="card-title">Особое обращение с заголовком</h5>
-                  <p class="card-text">С вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту.</p>
+                  <h5 class="card-title">c</h5>
+                  <p class="card-text">{{ product.image }}</p>
                   <div class="btn-group">
                     <a href="{% url 'catalog:product' product.pk %}" class="btn btn-outline-secondary" aria-current="page">Wiev</a>
                     <a href="{% url 'catalog:orders' %}" class="btn btn-outline-secondary" aria-current="page">Edit</a>
@@ -69,12 +69,12 @@
               <div class="card ms-5 me-5">
         
                 <div class="d-flex">
-                  <img src="https://www.rolarite.com/wp-content/uploads/2021/03/cart-logo.jpg" class="card-img-top" alt="...">
+                  <img src="/media/{{ product.image }}" class="card-img-top" alt="...">
                 </div>
         
                 <div class="card-body">
-                  <h5 class="card-title">Особое обращение с заголовком</h5>
-                  <p class="card-text">С вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту.</p>
+                  <h5 class="card-title">{{ product.name }}</h5>
+                  <p class="card-text">{{ product.description }}</p>
                   <div class="btn-group">
                     <a href="{% url 'catalog:product' product.pk %}" class="btn btn-outline-secondary" aria-current="page">Wiev</a>
                     <a href="{% url 'catalog:orders' %}" class="btn btn-outline-secondary" aria-current="page">Edit</a>
@@ -93,12 +93,12 @@
               <div class="card ms-5 me-5">
         
                 <div class="d-flex">
-                  <img src="https://www.rolarite.com/wp-content/uploads/2021/03/cart-logo.jpg" class="card-img-top" alt="...">
+                  <img src="/media/{{ product.image }}" class="card-img-top" alt="...">
                 </div>
         
                 <div class="card-body">
-                  <h5 class="card-title">Особое обращение с заголовком</h5>
-                  <p class="card-text">С вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту.</p>
+                  <h5 class="card-title">{{ product.name }}</h5>
+                  <p class="card-text">{{ product.description }}</p>
                   <div class="btn-group">
                     <a href="{% url 'catalog:product' product.pk %}" class="btn btn-outline-secondary" aria-current="page">Wiev</a>
                     <a href="{% url 'catalog:orders' %}" class="btn btn-outline-secondary" aria-current="page">Edit</a>
@@ -109,6 +109,30 @@
         {% endif %}
       {% endfor %}
     
+      <h2>Категория: Прочие продукты</h2>
+      {% for product in products %}
+        
+        {% if product.category_id == 5 %}
+            <div class="col-sm-6 mb-3 mb-sm-0 p-5">
+              <div class="card ms-5 me-5">
+        
+                <div class="d-flex">
+                  <img src="/media/{{ product.image }}" class="card-img-top" alt="...">
+                </div>
+        
+                <div class="card-body">
+                  <h5 class="card-title">{{ product.name }}</h5>
+                  <p class="card-text">{{ product.description }}</p>
+                  <div class="btn-group">
+                    <a href="{% url 'catalog:product' product.pk %}" class="btn btn-outline-secondary" aria-current="page">Wiev</a>
+                    <a href="{% url 'catalog:orders' %}" class="btn btn-outline-secondary" aria-current="page">Edit</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+        {% endif %}
+      {% endfor %}
+
     </div>
   </div>
 {% endblock %}
