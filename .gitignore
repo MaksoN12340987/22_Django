@@ -1,7 +1,5 @@
 static/images/*
 
-media/*
-
 # Environments"
 .env
 .venv

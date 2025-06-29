@@ -1,7 +1,5 @@
 django-admin startproject name
 
-posts_all = Posts.objects.all()
-
 
 python manage.py shell -i ipython
 

@@ -1,5 +1,6 @@
 import logging
 
+<<<<<<< HEAD
 from django.urls import reverse, reverse_lazy  # type: ignore
 from django.views.generic import (  # type: ignore
     CreateView,
@@ -8,6 +9,15 @@ from django.views.generic import (  # type: ignore
     ListView,
     UpdateView,
 )
+=======
+from django.shortcuts import render  # type: ignore
+from django.urls import reverse_lazy  # type: ignore
+from django.views.generic import DeleteView  # type: ignore
+from django.views.generic import (CreateView, DetailView,  # type: ignore
+                                  ListView)
+
+from blog.apps import BlogProjectName
+>>>>>>> b515b74ecb50180b82f5739d525e6d1da1c0d391
 
 from .forms import CreatePostForm, UpdatePostForm
 from .models import Posts
@@ -25,7 +35,7 @@ logger_views.setLevel(logging.INFO)
 
 class PostsList(ListView):
     model = Posts
-    template_name = "blog/home.html"
+    template_name = f"{BlogProjectName.name}/home.html"
     context_object_name = "posts"
 
     def get_queryset(self):
@@ -34,7 +44,7 @@ class PostsList(ListView):
 
 class PostsDetail(DetailView):
     model = Posts
-    template_name = "blog/post.html"
+    template_name = f"{BlogProjectName.name}/post.html"
     context_object_name = "post"
 
     def get_object(self, queryset=None):
@@ -46,6 +56,7 @@ class PostsDetail(DetailView):
 
 class PostsCreate(CreateView):
     model = Posts
+<<<<<<< HEAD
     template_name = "blog/create.html"
     form_class = CreatePostForm
 
@@ -67,4 +78,8 @@ class PostsDelete(DeleteView):
     model = Posts
     template_name = "blog/delete.html"
     context_object_name = "post"
+=======
+    template_name = f"{BlogProjectName.name}/create.html"
+    fields = ["title", "content", "number_views"]
+>>>>>>> b515b74ecb50180b82f5739d525e6d1da1c0d391
     success_url = reverse_lazy("blog:home")
