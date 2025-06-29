@@ -14,7 +14,7 @@ logger_app_catalog.addHandler(file_handler)
 logger_app_catalog.setLevel(logging.INFO)
 
 
-class CatalogProjectConfig(AppConfig):
+class CatalogConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "catalog"
 
