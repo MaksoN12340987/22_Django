@@ -4,16 +4,16 @@ from catalog.models import Category, Product
 
 
 class Command(BaseCommand):
-    help = "Delite test data to the databases"
+    help = "Delete test data to the databases"
 
     def handle(self, *args, **kwargs):
-        studens = Product.objects.all()
+        students = Product.objects.all()
 
-        for student in studens:
+        for student in students:
             student.delete()
             if student:
                 self.stdout.write(
-                    self.style.SUCCESS(f"Successfully delite: {student.name}")
+                    self.style.SUCCESS(f"Successfully delete: {student.name}")
                 )
             else:
                 self.stdout.write(self.style.WARNING(f"Student already not exists"))
@@ -24,7 +24,7 @@ class Command(BaseCommand):
             category.delete()
             if category:
                 self.stdout.write(
-                    self.style.SUCCESS(f"Successfully delite: {category.name}")
+                    self.style.SUCCESS(f"Successfully delete: {category.name}")
                 )
             else:
                 self.stdout.write(self.style.WARNING(f"Student already not exists"))
