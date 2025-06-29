@@ -1,10 +1,10 @@
-from django.urls import path  # type: ignore
+from django.urls import path
 
-from catalog.apps import CatalogProjectConfig
+from catalog.apps import CatalogConfig
 
 from . import views
 
-app_name = CatalogProjectConfig.name
+app_name = CatalogConfig.name
 
 urlpatterns = [
     path("home/", views.ProductListView.as_view(), name="home"),

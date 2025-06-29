@@ -10,7 +10,7 @@ class Posts(models.Model):
     title = models.CharField(max_length=200, verbose_name="Заголовок", unique=True)
     content = models.TextField(null=True, blank=True, verbose_name="Содержимое")
     preview = models.ImageField(
-        upload_to="/media/",
+        upload_to="../media/",
         verbose_name="Фотография",
         null=True,
     )

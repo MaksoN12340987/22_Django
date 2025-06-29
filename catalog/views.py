@@ -3,8 +3,6 @@ import logging
 from django.urls import reverse_lazy  # type: ignore
 from django.views.generic import CreateView, DetailView, ListView, DeleteView  # type: ignore
 
-from catalog.apps import CatalogProjectConfig
-
 from .models import Product
 from .forms import ContactForm
 
@@ -21,38 +19,38 @@ logger_views.setLevel(logging.INFO)
 
 class ProductListView(ListView):
     model = Product
-    template_name = f"{CatalogProjectConfig.name}/home.html"
+    template_name = "catalog/home.html"
     context_object_name = "products"
 
 
 class ProductDetailView(DetailView):
     model = Product
-    template_name = f"{CatalogProjectConfig.name}/product.html"
+    template_name = "catalog/product.html"
     context_object_name = "product"
 
 
 class ProductCategoriesListView(ListView):
     model = Product
-    template_name = f"{CatalogProjectConfig.name}/catalog.html"
+    template_name = "catalog/catalog.html"
     context_object_name = "products"
 
 
 class OrdersView(ListView):
     model = Product
-    template_name = f"{CatalogProjectConfig.name}/orders.html"
+    template_name = "catalog/orders.html"
     context_object_name = "products"
 
 
 class OrdersDelete(DeleteView):
     model = Product
-    template_name = f"{CatalogProjectConfig.name}/orders_delite.html"
+    template_name = "catalog/orders_delite.html"
     success_url = reverse_lazy("catalog:orders")
 
 
 class CreateProduct(CreateView):
     model = Product
     form_class = ContactForm
-    template_name = f"{CatalogProjectConfig.name}/contacts.html"
+    template_name = "catalog/contacts.html"
     success_url = reverse_lazy("catalog:catalog")
 
 

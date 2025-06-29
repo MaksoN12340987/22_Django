@@ -1,23 +1,10 @@
 import logging
 
-<<<<<<< HEAD
-from django.urls import reverse, reverse_lazy  # type: ignore
-from django.views.generic import (  # type: ignore
-    CreateView,
-    DeleteView,
-    DetailView,
-    ListView,
-    UpdateView,
-)
-=======
-from django.shortcuts import render  # type: ignore
-from django.urls import reverse_lazy  # type: ignore
-from django.views.generic import DeleteView  # type: ignore
-from django.views.generic import (CreateView, DetailView,  # type: ignore
-                                  ListView)
+from django.urls import reverse_lazy
+from django.views.generic import (CreateView, DetailView,
+                                  ListView, UpdateView, DeleteView)
 
-from blog.apps import BlogProjectName
->>>>>>> b515b74ecb50180b82f5739d525e6d1da1c0d391
+from blog.apps import BlogConfig
 
 from .forms import CreatePostForm, UpdatePostForm
 from .models import Posts
@@ -35,7 +22,7 @@ logger_views.setLevel(logging.INFO)
 
 class PostsList(ListView):
     model = Posts
-    template_name = f"{BlogProjectName.name}/home.html"
+    template_name = "blog/home.html"
     context_object_name = "posts"
 
     def get_queryset(self):
@@ -44,42 +31,33 @@ class PostsList(ListView):
 
 class PostsDetail(DetailView):
     model = Posts
-    template_name = f"{BlogProjectName.name}/post.html"
+    template_name = "blog/post.html"
     context_object_name = "post"
 
     def get_object(self, queryset=None):
         object_post = super().get_object(queryset)
-        object_post.number_views += 1
+        object_post.number_views += 1 # type: ignore
         object_post.save()
         return object_post
 
 
 class PostsCreate(CreateView):
     model = Posts
-<<<<<<< HEAD
     template_name = "blog/create.html"
-    form_class = CreatePostForm
-
+    fields = ["title", "content", "number_views"]
     success_url = reverse_lazy("blog:home")
-
-
+    
+    
 class PostsUpdate(UpdateView):
     model = Posts
-    template_name = "blog/update.html"
-    context_object_name = "post"
-    form_class = UpdatePostForm
-
-    def get_success_url(self):
-        return reverse("blog:post", args=[self.kwargs.get("pk")])
+    template_name = "blog/create.html"
+    fields = ["title", "content", "number_views"]
+    success_url = reverse_lazy("blog:home")
 
 
 
 class PostsDelete(DeleteView):
     model = Posts
-    template_name = "blog/delete.html"
-    context_object_name = "post"
-=======
-    template_name = f"{BlogProjectName.name}/create.html"
+    template_name = "blog/create.html"
     fields = ["title", "content", "number_views"]
->>>>>>> b515b74ecb50180b82f5739d525e6d1da1c0d391
     success_url = reverse_lazy("blog:home")
