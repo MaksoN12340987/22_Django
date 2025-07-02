@@ -1,8 +1,13 @@
 import logging
 
 from django.urls import reverse_lazy
-from django.views.generic import (CreateView, DetailView,
-                                  ListView, UpdateView, DeleteView)
+from django.views.generic import (
+    CreateView,
+    DetailView,
+    ListView,
+    UpdateView,
+    DeleteView,
+)
 
 from blog.apps import BlogConfig
 
@@ -36,7 +41,7 @@ class PostsDetail(DetailView):
 
     def get_object(self, queryset=None):
         object_post = super().get_object(queryset)
-        object_post.number_views += 1 # type: ignore
+        object_post.number_views += 1  # type: ignore
         object_post.save()
         return object_post
 
@@ -46,14 +51,13 @@ class PostsCreate(CreateView):
     template_name = "blog/create.html"
     fields = ["title", "content", "number_views"]
     success_url = reverse_lazy("blog:home")
-    
-    
+
+
 class PostsUpdate(UpdateView):
     model = Posts
     template_name = "blog/create.html"
     fields = ["title", "content", "number_views"]
     success_url = reverse_lazy("blog:home")
-
 
 
 class PostsDelete(DeleteView):

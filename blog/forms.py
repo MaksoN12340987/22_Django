@@ -10,24 +10,20 @@ class CreatePostForm(forms.ModelForm):
     class Meta:
         model = Posts
         fields = ["title", "content", "preview", "publication_flag"]
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        
-        self.fields['title'].widget.attrs.update({
-            'class': 'form-control-CreatePost',
-            'placeholder': 'Введите имя'
-        })
-        self.fields['content'].widget.attrs.update({
-            'class': 'form-control-CreatePost',
-            'placeholder': 'Введите фамилию'
-        })
-        self.fields['preview'].widget.attrs.update({
-            'class': 'form-control-CreatePost'
-        })
-        self.fields['publication_flag'].widget.attrs.update({
-            'class': 'form-check-input'
-        })
+
+        self.fields["title"].widget.attrs.update(
+            {"class": "form-control-CreatePost", "placeholder": "Введите имя"}
+        )
+        self.fields["content"].widget.attrs.update(
+            {"class": "form-control-CreatePost", "placeholder": "Введите фамилию"}
+        )
+        self.fields["preview"].widget.attrs.update({"class": "form-control-CreatePost"})
+        self.fields["publication_flag"].widget.attrs.update(
+            {"class": "form-check-input"}
+        )
 
     def clean(self):
         data_array = super().clean()
@@ -54,7 +50,6 @@ class CreatePostForm(forms.ModelForm):
             self.add_error("content", "Странно много повторяющихся символов...")
 
 
-
 class UpdatePostForm(forms.ModelForm):
     class Meta:
         model = Posts
@@ -62,23 +57,23 @@ class UpdatePostForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        
-        self.fields['title'].widget.attrs.update({
-            'class': 'form-control-CreatePost',
-            'placeholder': 'Отредактируйте заголовок'
-        })
-        self.fields['content'].widget.attrs.update({
-            'class': 'form-control-CreatePost',
-            'placeholder': 'Отредактируйте описание'
-        })
-        self.fields['preview'].widget.attrs.update({
-            'class': 'form-control-CreatePost'
-        })
-        self.fields['publication_flag'].widget.attrs.update({
-            'class': 'form-check-input'
-        })
 
-
+        self.fields["title"].widget.attrs.update(
+            {
+                "class": "form-control-CreatePost",
+                "placeholder": "Отредактируйте заголовок",
+            }
+        )
+        self.fields["content"].widget.attrs.update(
+            {
+                "class": "form-control-CreatePost",
+                "placeholder": "Отредактируйте описание",
+            }
+        )
+        self.fields["preview"].widget.attrs.update({"class": "form-control-CreatePost"})
+        self.fields["publication_flag"].widget.attrs.update(
+            {"class": "form-check-input"}
+        )
 
     def clean(self):
         data_array = super().clean()

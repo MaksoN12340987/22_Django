@@ -9,9 +9,18 @@ from users.apps import UsersConfig
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path(f"{BlogConfig.name}/", include(f"{BlogConfig.name}.urls", namespace=f"{BlogConfig.name}")),
-    path(f"{UsersConfig.name}/", include(f"{UsersConfig.name}.urls", namespace=f"{UsersConfig.name}")),
-    path(f"{CatalogConfig.name}/", include(f"{CatalogConfig.name}.urls", namespace=f"{CatalogConfig.name}")),
+    path(
+        f"{BlogConfig.name}/",
+        include(f"{BlogConfig.name}.urls", namespace=f"{BlogConfig.name}"),
+    ),
+    path(
+        f"{UsersConfig.name}/",
+        include(f"{UsersConfig.name}.urls", namespace=f"{UsersConfig.name}"),
+    ),
+    path(
+        f"{CatalogConfig.name}/",
+        include(f"{CatalogConfig.name}.urls", namespace=f"{CatalogConfig.name}"),
+    ),
 ]
 
 

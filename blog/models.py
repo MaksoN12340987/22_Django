@@ -17,9 +17,7 @@ class Posts(models.Model):
     creation_date = models.DateTimeField(
         auto_now_add=True, verbose_name="Дата создания"
     )
-    publication_flag = models.BooleanField(
-        verbose_name="Видно всем?", default=False
-    )
+    publication_flag = models.BooleanField(verbose_name="Видно всем?", default=False)
     number_views = models.IntegerField(
         help_text="Количество просмотров",
         verbose_name="Количество просмотров",
