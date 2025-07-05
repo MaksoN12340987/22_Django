@@ -20,7 +20,7 @@ class UserCreateForm(UserCreationForm):
             {"class": "form-control mb-4 rounded-2", "placeholder": "Введите вашу фамилию"}
         )
         self.fields["email"].widget.attrs.update(
-            {"class": "form-control rounded-2", "placeholder": "Введите ваше имейл"}
+            {"class": "form-control rounded-2", "placeholder": "Введите вашу почту"}
         )
         self.fields["phone_number"].widget.attrs.update(
             {"class": "form-control mb-4 rounded-2", "placeholder": "Введите номер телефона"}
@@ -33,4 +33,16 @@ class UserCreateForm(UserCreationForm):
 
 # Форма авторизации
 class CustomAuthenticationForm(AuthenticationForm):
-    pass
+    class Meta:
+        model = BaseUser
+        fields = ['username', 'password']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields["username"].widget.attrs.update(
+            {"class": "form-control rounded-2", "placeholder": "Введите имя пользователя"}
+        )
+        self.fields["password"].widget.attrs.update(
+            {"class": "form-control mt-3 rounded-2", "placeholder": "Введите пароль"}
+        )

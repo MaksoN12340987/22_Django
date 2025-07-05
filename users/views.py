@@ -13,7 +13,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from blog.apps import BlogConfig
 
 from .models import BaseUser
-from .forms import UserCreateForm
+from .forms import UserCreateForm, CustomAuthenticationForm
 
 logger_views_users = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
@@ -35,13 +35,13 @@ class UsersCreate(CreateView):
 
 class Login(LoginView):
     model = BaseUser
-    template_name = "users/create.html"
+    form_class = CustomAuthenticationForm
+    template_name = "users/log_in.html"
     
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('blog:home')
 
 
 class Logout(LogoutView):
     model = BaseUser
-    template_name = "users/create.html"
-    
-    success_url = reverse_lazy('home')
+    template_name = "users/log_out.html"
+    success_url = reverse_lazy('logout')
