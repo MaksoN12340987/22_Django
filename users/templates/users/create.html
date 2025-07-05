@@ -1,0 +1,43 @@
+{% extends 'users/base.html' %}
+
+{% block title %}
+  Авторизация
+{% endblock %}
+
+{% block page_title %}
+<div class="container-fluid text-start" style="height: 2rem;"></div>
+
+<div class="container-fluid text-gray-right p-4">
+  <h1>Авторизация пользователей</h1>
+</div>
+{% endblock %}
+
+{% block content %}
+  <h2>Вход</h2>
+  
+  <form method="post" class="mb-5">
+    
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+    <div class="row p-3">
+      <div class="col">
+        <button type="submit" class="btn btn-success btn-lg mb-5">Создать аккаунт</button>
+      </div>
+    </div>
+    
+  </form>
+{% endblock %}
+
+
+{% block bottom %}
+  <div class="container text-center p-1">
+    
+    <div class="row p-1">
+      <div class="col">
+        <a href="{% url 'users:create' %}" class="btn btn-success rounded-2">Обновить</a>
+      </div>
+    </div>
+
+  </div>
+{% endblock %}

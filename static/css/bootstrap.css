@@ -260,6 +260,67 @@
   box-sizing: border-box;
 }
 
+
+
+
+.container-fluid-base {
+  /* --bs-form-select-bg-img-home: url("../images/Japan_cars.jpg"); */
+  --bs-gutter-x: 0.5rem;
+  --bs-gutter-y: 0;
+  width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.1);
+  padding-left: calc(var(--bs-gutter-x) * 0.1);
+  margin-right: auto;
+  margin-left: auto;
+  /* background-image: var(--bs-form-select-bg-img-home); */
+  background-color: #001b26;
+}
+
+
+.container-md {
+  --bs-form-select-bg-img-home: url("../images/Japan_cars.jpg");
+  background-image: var(--bs-form-select-bg-img-home);
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 768px) {
+  .container-md {
+    max-width: 736px;
+  }
+}
+@media (min-width: 992px) {
+  .container-md {
+    max-width: 736px;
+  }
+}
+@media (min-width: 1200px) {
+  .container-md {
+    max-width: 736px;
+  }
+}
+@media (min-width: 1400px) {
+  .container-md {
+    max-width: 736px;
+  }
+}
+@media (min-width: 1920px) {
+  .container-md {
+    max-width: 736px;
+  }
+}
+:root {
+  --bs-breakpoint-md: 736px;
+}
+
+
+
+
 .navbar > .container-sm-page_title
 .navbar > .container-fluid-home {
   display: flex;
@@ -315,7 +376,7 @@
 
 .text-title {
   --bs-text-opacity: 1;
-  color: rgba(255, 227, 227, 0.8) !important;
+  color: rgb(221, 221, 221) !important;
 }
 
 .bg-post {
@@ -662,6 +723,44 @@
 .contact-form-catalog:hover:not(:disabled):not([readonly])::file-selector-button {
   background-color: var(--secondary-bg-catalog-hover-not);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1255,8 +1354,7 @@ progress {
 .container-fluid,
 .container-xxl,
 .container-xl,
-.container-lg,
-.container-md {
+.container-lg {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
   width: 100%;
@@ -1272,29 +1370,28 @@ progress {
   }
 }
 @media (min-width: 768px) {
-  .container-md, .container-sm, .container {
+  .container-sm, .container {
     max-width: 720px;
   }
 }
 @media (min-width: 992px) {
-  .container-lg, .container-md, .container-sm, .container {
+  .container-lg, .container-sm, .container {
     max-width: 960px;
   }
 }
 @media (min-width: 1200px) {
-  .container-xl, .container-lg, .container-md, .container-sm, .container {
+  .container-xl, .container-lg, .container-sm, .container {
     max-width: 1140px;
   }
 }
 @media (min-width: 1400px) {
-  .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
+  .container-xxl, .container-xl, .container-lg, .container-sm, .container {
     max-width: 1320px;
   }
 }
 :root {
   --bs-breakpoint-xs: 0;
   --bs-breakpoint-sm: 576px;
-  --bs-breakpoint-md: 768px;
   --bs-breakpoint-lg: 992px;
   --bs-breakpoint-xl: 1200px;
   --bs-breakpoint-xxl: 1400px;

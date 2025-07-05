@@ -1,9 +1,6 @@
-from django import forms  # type: ignore
+from django import forms
+from .models import Posts
 
-from .models import Posts  # type: ignore
-
-from django.core.validators import EmailValidator, MaxLengthValidator  # type: ignore
-from django.core.exceptions import ValidationError  # type: ignore
 
 
 class CreatePostForm(forms.ModelForm):
@@ -25,7 +22,7 @@ class CreatePostForm(forms.ModelForm):
             {"class": "form-check-input"}
         )
 
-    def clean(self):
+    def clean(self): # type: ignore
         data_array = super().clean()
         title = data_array.get("title")
         content = data_array.get("content")
@@ -33,12 +30,12 @@ class CreatePostForm(forms.ModelForm):
         if content == title:
             self.add_error("content", "Заголовок и описание одинаковые")
 
-        if len(content) < 40:
+        if len(content) < 40: # type: ignore
             self.add_error("content", "Скудное описание(")
 
         repetitions = 0
         item = ""
-        for i, value in enumerate(content):
+        for i, value in enumerate(content): # type: ignore
             if i > 0:
                 if item == value:
                     repetitions += 1
@@ -75,7 +72,7 @@ class UpdatePostForm(forms.ModelForm):
             {"class": "form-check-input"}
         )
 
-    def clean(self):
+    def clean(self): # type: ignore
         data_array = super().clean()
         title = data_array.get("title")
         content = data_array.get("content")
@@ -83,12 +80,12 @@ class UpdatePostForm(forms.ModelForm):
         if content == title:
             self.add_error("content", "Заголовок и описание одинаковые")
 
-        if len(content) < 40:
+        if len(content) < 40: # type: ignore
             self.add_error("content", "Скудное описание(")
 
         repetitions = 0
         item = ""
-        for i, value in enumerate(content):
+        for i, value in enumerate(content): # type: ignore
             if i > 0:
                 if item == value:
                     repetitions += 1

@@ -8,10 +8,12 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
+from django.contrib.auth.views import LoginView, LogoutView
 
 from blog.apps import BlogConfig
 
 from .models import BaseUser
+from .forms import UserCreateForm
 
 logger_views_users = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
@@ -24,7 +26,22 @@ logger_views_users.addHandler(file_handler)
 logger_views_users.setLevel(logging.INFO)
 
 
-class UsersList(ListView):
+class UsersCreate(CreateView):
     model = BaseUser
-    template_name = "users/home.html"
-    context_object_name = "users"
+    form_class = UserCreateForm
+    template_name = "users/create.html"
+    context_object_name = "user"
+
+
+class Login(LoginView):
+    model = BaseUser
+    template_name = "users/create.html"
+    
+    success_url = reverse_lazy('home')
+
+
+class Logout(LogoutView):
+    model = BaseUser
+    template_name = "users/create.html"
+    
+    success_url = reverse_lazy('home')
