@@ -44,5 +44,5 @@ class CustomAuthenticationForm(AuthenticationForm):
             {"class": "form-control rounded-2", "placeholder": "Введите имя пользователя"}
         )
         self.fields["password"].widget.attrs.update(
-            {"class": "form-control mt-3 rounded-2", "placeholder": "Введите пароль"}
+            {"class": "form-control rounded-2", "placeholder": "Введите пароль"}
         )
