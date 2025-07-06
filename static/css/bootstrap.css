@@ -288,23 +288,7 @@
   margin-right: auto;
   margin-left: auto;
 }
-
 @media (min-width: 768px) {
-  .container-md {
-    max-width: 736px;
-  }
-}
-@media (min-width: 992px) {
-  .container-md {
-    max-width: 736px;
-  }
-}
-@media (min-width: 1200px) {
-  .container-md {
-    max-width: 736px;
-  }
-}
-@media (min-width: 1400px) {
   .container-md {
     max-width: 736px;
   }
@@ -318,7 +302,30 @@
   --bs-breakpoint-md: 736px;
 }
 
-
+.container-md-blog {
+  --bs-form-select-bg-img-home: url("../images/china_three.jpg");
+  background-image: var(--bs-form-select-bg-img-home);
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .container-md-blog {
+    max-width: 736px;
+  }
+}
+@media (min-width: 1920px) {
+  .container-md-blog {
+    max-width: 736px;
+  }
+}
+:root {
+  --bs-breakpoint-md: 736px;
+}
 
 
 .navbar > .container-sm-page_title
