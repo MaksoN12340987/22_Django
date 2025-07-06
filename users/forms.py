@@ -5,7 +5,7 @@ from.models import BaseUser
 class UserCreateForm(UserCreationForm):
     class Meta:
         model = BaseUser
-        fields = ['username', 'first_name', 'last_name', 'email', 'phone_number', 'groups']
+        fields = ['username', 'first_name', 'last_name', 'email', 'phone_number', 'groups', 'password1', 'password2']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -27,6 +27,12 @@ class UserCreateForm(UserCreationForm):
         )
         self.fields["groups"].widget.attrs.update(
             {"class": "form-select mb-4 rounded-2", "placeholder": "Введите номер телефона"}
+        )
+        self.fields["password1"].widget.attrs.update(
+            {"class": "form-control mb-4 rounded-2", "placeholder": "Придумайте пароль"}
+        )
+        self.fields["password2"].widget.attrs.update(
+            {"class": "form-control mb-4 rounded-2", "placeholder": "Повторите пароль"}
         )
 
 

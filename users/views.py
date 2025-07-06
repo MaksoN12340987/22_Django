@@ -37,11 +37,10 @@ class Login(LoginView):
     model = BaseUser
     form_class = CustomAuthenticationForm
     template_name = "users/log_in.html"
-    
-    success_url = reverse_lazy('blog:home')
+
 
 
 class Logout(LogoutView):
     model = BaseUser
     template_name = "users/log_out.html"
-    success_url = reverse_lazy('logout')
+    success_url = reverse_lazy('users:logout')
