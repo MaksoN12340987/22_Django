@@ -1,5 +1,9 @@
-static/images/*
-media/*
+# Media
+*.webp
+*.png
+*.jpg
+*.jpeg
+*.svg
 
 # Environments"
 .env
