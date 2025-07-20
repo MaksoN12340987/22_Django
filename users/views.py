@@ -31,6 +31,7 @@ class UsersCreate(CreateView):
     form_class = UserCreateForm
     template_name = "users/create.html"
     context_object_name = "user"
+    success_url = reverse_lazy('users:login')
 
 
 class Login(LoginView):
@@ -43,4 +44,4 @@ class Login(LoginView):
 class Logout(LogoutView):
     model = BaseUser
     template_name = "users/log_out.html"
-    success_url = reverse_lazy('users:logout')
+    success_url = reverse_lazy('users:login')

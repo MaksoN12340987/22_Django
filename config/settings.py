@@ -13,8 +13,8 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 AUTH_USER_MODEL = "users.BaseUser"
-LOGIN_REDIRECT_URL = "blog:home"
-LOGOUT_REDIRECT_URL = "users:create"
+LOGIN_REDIRECT_URL = "catalog:home"
+LOGOUT_REDIRECT_URL = "users:logout"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/

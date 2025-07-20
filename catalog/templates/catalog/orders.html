@@ -24,7 +24,7 @@
                       <p class="card-text">Распродажа только сегодня скидка 15% на всё</p>
                       <form method="get">
                         {% csrf_token %}
-                        <a href="{% url 'catalog:orders_delite' product.pk %}" class="btn btn-danger">Удалить из карзины</a>
+                        <a href="{% url 'catalog:delete' product.pk %}" class="btn btn-danger">Удалить из карзины</a>
                       </form>
                   </div>
               </div>

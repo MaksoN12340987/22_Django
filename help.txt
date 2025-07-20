@@ -26,3 +26,5 @@ python manage.py migrate
 
 
 post_1 = Posts(title="РЕКС", content="Бренд регионального экспреса ЦППК", preview=Image.open("blog/media/default/_DSC1419.JPG" ), publication_flag=True, number_views=0)
+
+products = Product.objects.all()

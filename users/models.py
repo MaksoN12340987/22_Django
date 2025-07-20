@@ -18,6 +18,12 @@ class BaseUser(AbstractUser):
     # "groups" - Группы, к которым принадлежит этот пользователь.
     #           Пользователь получит все разрешения, предоставленные каждой из его групп
     # "user_permissions" - Конкретные разрешения для этого пользователя
+    preview = models.ImageField(
+        upload_to="../media/",
+        verbose_name="Фотография",
+        null=True,
+        blank=True,
+    )
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
 
