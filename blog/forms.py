@@ -2,7 +2,6 @@ from django import forms
 from .models import Posts
 
 
-
 class CreatePostForm(forms.ModelForm):
     class Meta:
         model = Posts
@@ -22,7 +21,7 @@ class CreatePostForm(forms.ModelForm):
             {"class": "form-check-input"}
         )
 
-    def clean(self): # type: ignore
+    def clean(self):  # type: ignore
         data_array = super().clean()
         title = data_array.get("title")
         content = data_array.get("content")
@@ -30,12 +29,12 @@ class CreatePostForm(forms.ModelForm):
         if content == title:
             self.add_error("content", "Заголовок и описание одинаковые")
 
-        if len(content) < 40: # type: ignore
+        if len(content) < 40:  # type: ignore
             self.add_error("content", "Скудное описание(")
 
         repetitions = 0
         item = ""
-        for i, value in enumerate(content): # type: ignore
+        for i, value in enumerate(content):  # type: ignore
             if i > 0:
                 if item == value:
                     repetitions += 1
@@ -72,7 +71,7 @@ class UpdatePostForm(forms.ModelForm):
             {"class": "form-check-input"}
         )
 
-    def clean(self): # type: ignore
+    def clean(self):  # type: ignore
         data_array = super().clean()
         title = data_array.get("title")
         content = data_array.get("content")
@@ -80,12 +79,12 @@ class UpdatePostForm(forms.ModelForm):
         if content == title:
             self.add_error("content", "Заголовок и описание одинаковые")
 
-        if len(content) < 40: # type: ignore
+        if len(content) < 40:  # type: ignore
             self.add_error("content", "Скудное описание(")
 
         repetitions = 0
         item = ""
-        for i, value in enumerate(content): # type: ignore
+        for i, value in enumerate(content):  # type: ignore
             if i > 0:
                 if item == value:
                     repetitions += 1

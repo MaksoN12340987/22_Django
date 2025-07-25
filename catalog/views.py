@@ -1,7 +1,8 @@
 import logging
 
-from django.urls import reverse_lazy  # type: ignore
-from django.views.generic import CreateView, DetailView, ListView, DeleteView  # type: ignore
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DetailView, ListView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Product
 from .forms import ContactForm
@@ -35,19 +36,19 @@ class ProductCategoriesListView(ListView):
     context_object_name = "products"
 
 
-class OrdersView(ListView):
+class OrdersView(LoginRequiredMixin, ListView):
     model = Product
     template_name = "catalog/orders.html"
     context_object_name = "products"
 
 
-class OrdersDelete(DeleteView):
+class OrdersDelete(LoginRequiredMixin, DeleteView):
     model = Product
     template_name = "catalog/orders_delite.html"
     success_url = reverse_lazy("catalog:orders")
 
 
-class CreateProduct(CreateView):
+class CreateProduct(LoginRequiredMixin, CreateView):
     model = Product
     form_class = ContactForm
     template_name = "catalog/contacts.html"

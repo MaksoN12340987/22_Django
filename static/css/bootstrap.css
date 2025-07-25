@@ -328,6 +328,45 @@
 }
 
 
+
+.container-md-ctaalog {
+  /* --bs-form-select-bg-img-home: url("../images/Japan_cars.jpg");
+  background-image: var(--bs-form-select-bg-img-home); */
+  --rgb-title: 230, 230, 230;
+  background-color: rgba(var(--rgb-title), 1) !important;
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .container-md-ctaalog {
+    max-width: 1200px;
+  }
+}
+@media (min-width: 1920px) {
+  .container-md-ctaalog {
+    max-width: 1200px;
+  }
+}
+:root {
+  --bs-breakpoint-md: 1200px;
+}
+
+.bg-ctaalog {
+  --bs-rgb-title: 30, 30, 30;
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-rgb-title), 0.8) !important;
+}
+
+
+
+
+
+
 .navbar > .container-sm-page_title
 .navbar > .container-fluid-home {
   display: flex;

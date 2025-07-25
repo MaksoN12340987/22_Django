@@ -9,8 +9,8 @@ from django.views.generic import (
     DeleteView,
 )
 from django.contrib.auth.views import LoginView, LogoutView
-
-from blog.apps import BlogConfig
+from django.core.mail import send_mail
+from django.contrib.auth import login
 
 from .models import BaseUser
 from .forms import UserCreateForm, CustomAuthenticationForm
@@ -30,8 +30,24 @@ class UsersCreate(CreateView):
     model = BaseUser
     form_class = UserCreateForm
     template_name = "users/create.html"
-    context_object_name = "user"
-    success_url = reverse_lazy('users:login')
+    success_url = reverse_lazy("users:login")
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        self.send_welcome_email(user.email)
+        return super().form_valid(form)
+
+    def send_welcome_email(self, user_email):
+        logger_views_users.info(user_email)
+        subject = "Добро пожаловать в наш сервис"
+        message = "Спасибо, что зарегистрировались в нашем сервисе!"
+        from_email = "gorscheneow2018@yandex.ru"
+        recipient_list = [user_email]
+
+        logger_views_users.info(recipient_list)
+
+        send_mail(subject, message, from_email, recipient_list)
 
 
 class Login(LoginView):
@@ -40,8 +56,7 @@ class Login(LoginView):
     template_name = "users/log_in.html"
 
 
-
 class Logout(LogoutView):
     model = BaseUser
     template_name = "users/log_out.html"
-    success_url = reverse_lazy('users:login')
+    success_url = reverse_lazy("users:login")

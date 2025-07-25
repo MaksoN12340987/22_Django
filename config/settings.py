@@ -1,5 +1,18 @@
+import logging
 import os
 from pathlib import Path
+
+from django.urls import reverse_lazy
+
+logger_views_setings = logging.getLogger(__name__)
+file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
+file_formatter = logging.Formatter(
+    "\n%(asctime)s %(levelname)s %(name)s \n%(funcName)s %(lineno)d: \n%(message)s",
+    datefmt="%H:%M:%S %d-%m-%Y",
+)
+file_handler.setFormatter(file_formatter)
+logger_views_setings.addHandler(file_handler)
+logger_views_setings.setLevel(logging.INFO)
 
 from dotenv import load_dotenv  # type: ignore
 
@@ -26,6 +39,22 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = True if os.getenv("DEBUG") == "True" else False
 
 ALLOWED_HOSTS = ["localhost", "192.168.1.2", "192.168.0.114"]
+
+
+# Email setings
+EMAIL_BACKEND = os.getenv("EMAIL_BACKEND")
+EMAIL_HOST = os.getenv("EMAIL_HOST", default="smtp.yandex.ru")
+EMAIL_PORT = os.getenv("EMAIL_PORT", default="465")
+EMAIL_USE_TLS = True if os.getenv("EMAIL_USE_TLS") == "True" else False
+EMAIL_USE_SSL = True if os.getenv("EMAIL_USE_SSL") == "True" else False
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", default="gorscheneow2018@yandex.ru")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = os.getenv(
+    "DEFAULT_FROM_EMAIL", default="gorscheneow2018@yandex.ru"
+)
+
+# Login config
+LOGIN_URL = 'users:login'
 
 
 # Application definition

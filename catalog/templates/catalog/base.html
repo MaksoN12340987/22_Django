@@ -7,127 +7,137 @@
     <link href="\static\css\bootstrap.css" rel="stylesheet">
     <script defer src="\static\js\bootstrap.bundle.js"></script>
   <body>
-    <div class="container-fluid">
-        <div class="row">
-            
-            <div class="col-2 bg-dark text-white p-2">
-            
-                <div class="d-flex align-items-center ms-3">
-                  <img src="/static/images/icon.svg.png" alt="" width="40" height="40" class="d-inline-block">
-                  <div class="flex-grow-0"><h2 class="mt-1 ms-3">Меню</h2></div>
-                </div>
 
-                <div class="col ms-1 mb-3 me-2"><hr></div>
-
-                <div class="d-grid">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                          <a class="nav-link" aria-current="page" href="{% url 'catalog:catalog' %}">
-                            <div class="d-flex text-bg-primary rounded-3">
-                                <img src="/static/images/home.png" alt="" width="24" height="20" class="d-inline-block mt-2 ms-2">
-                                <div class="flex-grow-0 ms-2 mt-2"><h5>Главная</h5></div>
-                            </div>
-                          </a>
-                        </li>
-                        
-                        <li class="nav-item">
-                          <a class="nav-link" href="{% url 'catalog:catalog' %}">
-                            <div class="d-flex bg-dark text-white ms-2">
-                                <img src="/static/images/categories.png" alt="" width="26" height="24" class="d-inline-block mt-1">
-                                <div class="flex-grow-0 ms-2 mt-1"><p>Категории</p></div>
-                            </div>
-                            
-                          </a>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'catalog:orders' %}">
-                              <div class="d-flex bg-dark text-white ms-2">
-                                  <img src="/static/images/orders.png" alt="" width="26" height="21" class="d-inline-block mt-1">
-                                  <div class="flex-grow-0 ms-2"><p>Заказы</p></div>
-                              </div>
-                            </a>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'catalog:contacts' %}">
-                              <div class="d-flex bg-dark text-white ms-2">
-                                  <img src="/static/images/check-box.png" alt="" width="20" height="21" class="d-inline-block mt-1">
-                                  <div class="flex-grow-0 mt-1 ms-2"><p>Добавить товар</p></div>
-                              </div>
-                            </a>
-                        </li>
-                    </ul>
-
-                </div>
-
-            </div>
-
-            <div class="col-10 bg-secondary">
-
-                <div class="text-center p-4 mt-5">
-                  {% block page_title %}Заказ товаров{% endblock %}
-                </div>
-
-                {% block content %}{% endblock %}
-
-            </div>
-
-        </div>
-
-        <div class="fixed-bottom">
-
-          {% if user.is_authenticated %}
-            <div class="col-2 bg-dark text-white p-2">
-  
-              <div class="col ms-1 mb-3 me-2"><hr></div>
+    <div class="container-fluid bg-ctaalog">
+      <div class="container-md-ctaalog">
+          <div class="row">
               
-              <div class="d-flex bg-dark text-white ms-2">
-                  
-                  <img src="/static/images/defolt-user.png" alt="" width="30" height="30" class="d-inline-block mt-1">
-
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-dark">Действия</button>
-                    <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                      <span class="visually-hidden">Переключатель выпадающего списка</span>
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Профиль</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li>
-                        <form method="post" action="{% url 'users:logout' %}" style="display: inline;">
-                          {% csrf_token %}
-                          <div class="flex-grow-0 ms-2 mt-1">
-                            <button type="submit" class="btn btn-link nav-link">Выйти</button>
-                          </div>
-                        </form>
-                      </li>
-                    </ul>
+              <div class="col-2 bg-dark text-white p-2">
+              
+                  <div class="d-flex align-items-center ms-3">
+                    <img src="/static/images/icon.svg.png" alt="" width="40" height="40" class="d-inline-block">
+                    <div class="flex-grow-0"><h2 class="mt-1 ms-3">Меню</h2></div>
                   </div>
-                  
-                </div>
-  
-            </div>
-          
-          {% else %}
 
-            <div class="col-2 bg-dark text-white p-2">
-  
-              <div class="col ms-1 mb-3 me-2"><hr></div>
-              
-              <a class="nav-link" href="{% url 'users:login' %}">
-                <div class="d-flex bg-dark text-white ms-2">
-                  <img src="/static/images/defolt-user.png" alt="" width="30" height="30" class="d-inline-block mt-1">
-                  <div class="flex-grow-0 ms-2 mt-1"><p>Вход</p></div>
-                </div>
-              </a>
-  
-            </div>
+                  <div class="col ms-1 mb-3 me-2"><hr></div>
 
-          {% endif %}
+                  <div class="d-grid">
+                      <ul class="nav flex-column">
+                          <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{% url 'catalog:catalog' %}">
+                              <div class="d-flex text-bg-primary rounded-3">
+                                  <img src="/static/images/home.png" alt="" width="24" height="20" class="d-inline-block mt-2 ms-2">
+                                  <div class="flex-grow-0 ms-2 mt-2"><h5>Главная</h5></div>
+                              </div>
+                            </a>
+                          </li>
+                          
+                          <li class="nav-item">
+                            <a class="nav-link" href="{% url 'catalog:catalog' %}">
+                              <div class="d-flex bg-dark text-white ms-2">
+                                  <img src="/static/images/categories.png" alt="" width="26" height="24" class="d-inline-block mt-1">
+                                  <div class="flex-grow-0 ms-2 mt-1"><p>Категории</p></div>
+                              </div>
+                              
+                            </a>
+                          </li>
+                          
+                          <li class="nav-item">
+                              <a class="nav-link" href="{% url 'catalog:orders' %}">
+                                <div class="d-flex bg-dark text-white ms-2">
+                                    <img src="/static/images/orders.png" alt="" width="26" height="21" class="d-inline-block mt-1">
+                                    <div class="flex-grow-0 ms-2"><p>Заказы</p></div>
+                                </div>
+                              </a>
+                          </li>
+                          
+                          <li class="nav-item">
+                              <a class="nav-link" href="{% url 'catalog:contacts' %}">
+                                <div class="d-flex bg-dark text-white ms-2">
+                                    <img src="/static/images/check-box.png" alt="" width="20" height="21" class="d-inline-block mt-1">
+                                    <div class="flex-grow-0 mt-1 ms-2"><p>Добавить товар</p></div>
+                                </div>
+                              </a>
+                          </li>
+                          
+                          <li class="nav-item">
+                              <a class="nav-link" href="{% url 'blog:home' %}">
+                                <div class="d-flex bg-dark text-white ms-2">
+                                    <img src="/static/images/check-box.png" alt="" width="20" height="21" class="d-inline-block mt-1">
+                                    <div class="flex-grow-0 mt-1 ms-2"><p>Блог</p></div>
+                                </div>
+                              </a>
+                          </li>
+                      </ul>
 
+                  </div>
+
+              </div>
+
+              <div class="col-10">
+
+                  <div class="text-center">
+                    {% block page_title %}Заказ товаров{% endblock %}
+                  </div>
+
+                  {% block content %}{% endblock %}
+
+              </div>
+          </div>
+      
+        <div class="row">
+
+                {% if user.is_authenticated %}
+                  <div class="col-2 bg-dark text-white p-2">
+        
+                    <div class="col ms-1 mb-3 me-2"><hr></div>
+                    
+                    <div class="d-flex bg-dark text-white ms-2">
+                        
+                        <img src="/static/images/defolt-user.png" alt="" width="30" height="30" class="d-inline-block mt-1">
+
+                        <div class="btn-group">
+                          <h6 class="ms-2 mt-2 me-1">{{ user.username }}</h6>
+                          <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="visually-hidden">Переключатель выпадающего списка</span>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Профиль</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                              <form method="post" action="{% url 'users:logout' %}" style="display: inline;">
+                                {% csrf_token %}
+                                <div class="flex-grow-0 ms-2 mt-1">
+                                  <button type="submit" class="btn btn-link nav-link">Выйти</button>
+                                </div>
+                              </form>
+                            </li>
+                          </ul>
+                        </div>
+                        
+                      </div>
+        
+                  </div>
+                
+                {% else %}
+
+                  <div class="col-2 bg-dark text-white p-2">
+        
+                    <div class="col ms-1 mb-3 me-2"><hr></div>
+                    
+                    <a class="nav-link" href="{% url 'users:login' %}">
+                      <div class="d-flex bg-dark text-white ms-2">
+                        <img src="/static/images/defolt-user.png" alt="" width="30" height="30" class="d-inline-block mt-1">
+                        <div class="flex-grow-0 ms-2 mt-1"><p>Вход</p></div>
+                      </div>
+                    </a>
+        
+                  </div>
+
+                {% endif %}
+        
         </div>
+      </div>
     </div>
-    
   </body>
 </html>
