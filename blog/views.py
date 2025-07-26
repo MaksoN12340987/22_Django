@@ -9,7 +9,7 @@ from django.views.generic import (
     DeleteView,
 )
 
-from blog.apps import BlogConfig
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import CreatePostForm, UpdatePostForm
 from .models import Posts
@@ -46,22 +46,21 @@ class PostsDetail(DetailView):
         return object_post
 
 
-class PostsCreate(CreateView):
+class PostsCreate(LoginRequiredMixin, CreateView):
     model = Posts
     template_name = "blog/create.html"
-    fields = ["title", "content", "number_views"]
+    form_class = CreatePostForm
     success_url = reverse_lazy("blog:home")
 
 
-class PostsUpdate(UpdateView):
+class PostsUpdate(LoginRequiredMixin, UpdateView):
     model = Posts
     template_name = "blog/create.html"
-    fields = ["title", "content", "number_views"]
+    form_class = UpdatePostForm
     success_url = reverse_lazy("blog:home")
 
 
-class PostsDelete(DeleteView):
+class PostsDelete(LoginRequiredMixin, DeleteView):
     model = Posts
-    template_name = "blog/create.html"
-    fields = ["title", "content", "number_views"]
+    template_name = "blog/delete.html"
     success_url = reverse_lazy("blog:home")

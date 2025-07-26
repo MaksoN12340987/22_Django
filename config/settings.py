@@ -54,7 +54,7 @@ DEFAULT_FROM_EMAIL = os.getenv(
 )
 
 # Login config
-LOGIN_URL = 'users:login'
+LOGIN_URL = "users:login"
 
 
 # Application definition

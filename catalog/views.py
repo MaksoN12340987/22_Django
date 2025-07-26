@@ -53,9 +53,3 @@ class CreateProduct(LoginRequiredMixin, CreateView):
     form_class = ContactForm
     template_name = "catalog/contacts.html"
     success_url = reverse_lazy("catalog:catalog")
-
-
-# class UsersView(ListView):
-#     model = Users
-#     template_name = f"{CatalogProjectConfig.name}/users.html"
-#     context_object_name = "users"

@@ -315,16 +315,16 @@
 }
 @media (min-width: 768px) {
   .container-md-blog {
-    max-width: 736px;
+    max-width: 1000px;
   }
 }
 @media (min-width: 1920px) {
   .container-md-blog {
-    max-width: 736px;
+    max-width: 1000px;
   }
 }
 :root {
-  --bs-breakpoint-md: 736px;
+  --bs-breakpoint-md: 1000px;
 }
 
 
@@ -375,7 +375,7 @@
   justify-content: space-between;
 }
 .container-fluid-home {
-  --bs-form-select-bg-img-home: url("../images/Japan_train_full.jpg");
+  --bs-form-select-bg-img-home: url("../images/ice_train_big.jpg");
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
   width: 100%;
@@ -399,6 +399,8 @@
 
 
 .container-sm-page_title {
+  --bs-rgb-page-title: 217, 155, 0;
+  background-color: rgba(var(--bs-rgb-page-title), 1) !important;
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
   width: 45%;
@@ -409,7 +411,7 @@
 }
 
 .bg-primary-top-line {
-  --bg-img-top-line: url("../images/zastavka_title.jpg");
+  --bg-img-top-line: url("../images/dark_blue_background.jpg");
   --bs-bg-opacity: 1;
   background-image: var(--bg-img-top-line);
 }
@@ -417,7 +419,7 @@
 .bg-title {
   --bs-rgb-title: 0, 59, 115;
   --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-rgb-title), 0.8) !important;
+  background-color: rgba(var(--bs-rgb-title), 1) !important;
 }
 
 .text-title {
@@ -437,8 +439,14 @@
   color: rgba(82, 1, 1) !important;
 }
 
+.text-post-title-right {
+  --bs-text-opacity: 1;
+  color: rgba(82, 1, 1) !important;
+  text-align: right !important;
+}
+
 .bg-post-card {
-  --bs-rgb-post-card: 1, 102, 133;
+  --bs-rgb-post-card: 217, 155, 0;
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-rgb-post-card), 0.8) !important;
 }

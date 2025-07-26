@@ -11,10 +11,10 @@ class CreatePostForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         self.fields["title"].widget.attrs.update(
-            {"class": "form-control-CreatePost", "placeholder": "Введите имя"}
+            {"class": "form-control-CreatePost", "placeholder": "Введите заголовок"}
         )
         self.fields["content"].widget.attrs.update(
-            {"class": "form-control-CreatePost", "placeholder": "Введите фамилию"}
+            {"class": "form-control-CreatePost", "placeholder": "Введите описанние"}
         )
         self.fields["preview"].widget.attrs.update({"class": "form-control-CreatePost"})
         self.fields["publication_flag"].widget.attrs.update(
