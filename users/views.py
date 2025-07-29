@@ -1,19 +1,13 @@
 import logging
 
-from django.urls import reverse_lazy
-from django.views.generic import (
-    CreateView,
-    DetailView,
-    ListView,
-    UpdateView,
-    DeleteView,
-)
+from django.contrib.auth import login
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
-from django.contrib.auth import login
+from django.urls import reverse_lazy
+from django.views.generic import (CreateView, DetailView)
 
+from .forms import CustomAuthenticationForm, UserCreateForm
 from .models import BaseUser
-from .forms import UserCreateForm, CustomAuthenticationForm
 
 logger_views_users = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")

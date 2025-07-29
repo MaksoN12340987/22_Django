@@ -16,4 +16,4 @@ class Command(BaseCommand):
                     self.style.SUCCESS(f"Successfully delete: {post.title}")
                 )
             else:
-                self.stdout.write(self.style.WARNING(f"Student already not exists"))
+                self.stdout.write(self.style.WARNING("Student already not exists"))

@@ -1,9 +1,4 @@
-from typing import Any
-
-from django.db import models  # type: ignore
-
-# from PIL import Image # type: ignore
-from config.settings import MEDIA_ROOT
+from django.db import models
 
 
 class Posts(models.Model):

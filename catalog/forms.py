@@ -1,8 +1,8 @@
 from django import forms  # type: ignore
 
-from .models import Product  # type: ignore
-
 from config.settings import WORDS_PROHIBITED  # type: ignore
+
+from .models import Product  # type: ignore
 
 
 class ContactForm(forms.ModelForm):

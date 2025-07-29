@@ -2,8 +2,6 @@ import logging
 import os
 from pathlib import Path
 
-from django.urls import reverse_lazy
-
 logger_views_setings = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
 file_formatter = logging.Formatter(
@@ -14,7 +12,7 @@ file_handler.setFormatter(file_formatter)
 logger_views_setings.addHandler(file_handler)
 logger_views_setings.setLevel(logging.INFO)
 
-from dotenv import load_dotenv  # type: ignore
+from dotenv import load_dotenv
 
 from blog.apps import BlogConfig
 from catalog.apps import CatalogConfig
