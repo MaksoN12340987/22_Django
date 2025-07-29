@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 
 
+
 class BaseUser(AbstractUser):
     # Поля модели по умолчанию:
     # "id"
@@ -19,10 +20,9 @@ class BaseUser(AbstractUser):
     #           Пользователь получит все разрешения, предоставленные каждой из его групп
     # "user_permissions" - Конкретные разрешения для этого пользователя
     preview = models.ImageField(
-        upload_to="../media/",
+        upload_to="users/",
         verbose_name="Фотография",
         null=True,
-        blank=True,
     )
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True)

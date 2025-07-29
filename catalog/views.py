@@ -18,19 +18,19 @@ logger_views.addHandler(file_handler)
 logger_views.setLevel(logging.INFO)
 
 
-class ProductListView(ListView):
+class ProductListView(LoginRequiredMixin, ListView):
     model = Product
     template_name = "catalog/home.html"
     context_object_name = "products"
 
 
-class ProductDetailView(DetailView):
+class ProductDetailView(LoginRequiredMixin, DetailView):
     model = Product
     template_name = "catalog/product.html"
     context_object_name = "product"
 
 
-class ProductCategoriesListView(ListView):
+class ProductCategoriesListView(LoginRequiredMixin, ListView):
     model = Product
     template_name = "catalog/catalog.html"
     context_object_name = "products"

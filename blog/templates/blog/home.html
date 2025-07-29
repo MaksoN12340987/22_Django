@@ -49,7 +49,7 @@
 
     <div class="col-6">
       <div class="row">
-        <div class="col-4 mt-1  text-start">
+        <div class="col-4 mt-1">
           <a href="{% url 'catalog:home' %}" class="btn btn-success">Магазин</a>
         </div>
     
@@ -57,13 +57,31 @@
           <a href="{% url 'blog:create' %}" class="btn btn-success">Создать пост</a>
         </div>
     
-        <div class="col-4 mt-1  text-end">
-          <form method="post" action="{% url 'users:logout' %}" style="display: inline;">
-            {% csrf_token %}
-            <div class="flex-grow-0">
-              <button type="submit" class="btn btn-warning">Выйти</button>
+        <div class="col-4 mt-1 text-end">
+
+            <img src="../../media/{{ user.preview }}" width="30" height="30" class="d-inline-block mt-1">
+
+            <div class="btn-group">
+              <h6 class="ms-2 mt-2 me-3 text-white">{{ user.username }}</h6>
+              
+              <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="visually-hidden">Переключатель выпадающего списка</span>
+              </button>
+              
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'users:profile' user.pk %}">Профиль</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                  <form method="post" action="{% url 'users:logout' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <div class="flex-grow-0 ms-2 mt-1">
+                      <button type="submit" class="btn btn-link nav-link">Выйти</button>
+                    </div>
+                  </form>
+                </li>
+              </ul>
+            
             </div>
-          </form>
         </div>
     
       </div>

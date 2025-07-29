@@ -94,7 +94,7 @@
                     
                     <div class="d-flex bg-dark text-white ms-2">
                         
-                        <img src="/static/images/defolt-user.png" alt="" width="30" height="30" class="d-inline-block mt-1">
+                        <img src="../../media/{{ user.preview }}" width="30" height="30" class="d-inline-block mt-1">
 
                         <div class="btn-group">
                           <h6 class="ms-2 mt-2 me-1">{{ user.username }}</h6>
@@ -102,7 +102,7 @@
                             <span class="visually-hidden">Переключатель выпадающего списка</span>
                           </button>
                           <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Профиль</a></li>
+                            <li><a class="dropdown-item" href="{% url 'users:profile' user.pk %}">Профиль</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
                               <form method="post" action="{% url 'users:logout' %}" style="display: inline;">
@@ -125,7 +125,7 @@
         
                     <div class="col ms-1 mb-3 me-2"><hr></div>
                     
-                    <a class="nav-link" href="{% url 'users:login' %}">
+                    <a class="nav-link" href="{% url 'users:login' user.pk %}">
                       <div class="d-flex bg-dark text-white ms-2">
                         <img src="/static/images/defolt-user.png" alt="" width="30" height="30" class="d-inline-block mt-1">
                         <div class="flex-grow-0 ms-2 mt-1"><p>Вход</p></div>

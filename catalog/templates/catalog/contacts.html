@@ -13,9 +13,9 @@
     
   <div class="row p-5">
                       
-    <div class="col-sm-6 p-5">
-      <div class="card rounded-3 ms-2 me-2">
-          <form method="post" action="">
+    <div class="col-sm-6 p-3">
+      <div class="card rounded-3">
+          <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="p-2 ms-1 mb-1">
               {{ form.as_p }}
@@ -29,7 +29,7 @@
       </div>
     </div>
     
-    <div class="col-sm-6 p-5">
+    <div class="col-sm-6 p-3">
       <div class="p-1">
         
         <h2>Наши контакты</h2>

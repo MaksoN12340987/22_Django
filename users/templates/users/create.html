@@ -15,7 +15,7 @@
         <h1>Регистрация пользователей</h1>
       </div>
 
-      <form method="post" class="mb-5">
+      <form method="post" class="mb-5" enctype="multipart/form-data">
           
         {% csrf_token %}
         {{ form.as_p }}

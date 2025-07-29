@@ -29,4 +29,6 @@ post_1 = Posts(title="РЕКС", content="Бренд регионального 
 
 products = Product.objects.all()
 
+from users.models import BaseUser
 
+from django.contrib.auth.models import Permission
