@@ -27,6 +27,11 @@
               <div>
                 <img src="../../../media/{{ user.preview }}" class="card-img-top">
               </div>
+            
+              <div class="d-flex">
+                <a href="{% url 'users:redact' %}" class="btn btn-success rounded-2">Редактировать</a>
+              </div>
+            
             </div>
 
             <div class="col-7">

@@ -4,9 +4,10 @@ from django.contrib.auth import login
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
 from django.urls import reverse_lazy
-from django.views.generic import (CreateView, DetailView)
+from django.http import HttpResponseForbidden
+from django.views.generic import (CreateView, DetailView, UpdateView)
 
-from .forms import CustomAuthenticationForm, UserCreateForm
+from .forms import AuthForm, UserCreateForm, RedactProfileForm
 from .models import BaseUser
 
 logger_views_users = logging.getLogger(__name__)
@@ -46,17 +47,29 @@ class UsersCreate(CreateView):
 
 class Login(LoginView):
     model = BaseUser
-    form_class = CustomAuthenticationForm
+    form_class = AuthForm
     template_name = "users/log_in.html"
 
 
 class Logout(LogoutView):
     model = BaseUser
     template_name = "users/log_out.html"
-    success_url = reverse_lazy("users:login")
 
 
 class Profile(DetailView):
     model = BaseUser
     template_name = "users/profile.html"
     context_object_name = "user"
+
+
+class RedactProfile(UpdateView):
+    model = BaseUser
+    form_class = RedactProfileForm
+    template_name = "users/redact.html"
+    context_object_name = "user"
+    
+    # def get_queryset(self):
+    #     if not self.request.user.has_perm('baseuser.update_baseuser'):
+    #         return HttpResponseForbidden('В доступе отказано')
+        
+    #     return super().get_queryset()
