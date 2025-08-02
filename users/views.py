@@ -4,8 +4,10 @@ from django.contrib.auth import login
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
 from django.urls import reverse_lazy
-from django.http import HttpResponseForbidden
+from django.http import HttpRequest, HttpResponse, HttpResponseForbidden
 from django.views.generic import (CreateView, DetailView, UpdateView)
+from django.shortcuts import get_object_or_404, redirect
+
 
 from .forms import AuthForm, UserCreateForm, RedactProfileForm
 from .models import BaseUser
@@ -67,9 +69,9 @@ class RedactProfile(UpdateView):
     form_class = RedactProfileForm
     template_name = "users/redact.html"
     context_object_name = "user"
-    
-    # def get_queryset(self):
-    #     if not self.request.user.has_perm('baseuser.update_baseuser'):
-    #         return HttpResponseForbidden('В доступе отказано')
-        
-    #     return super().get_queryset()
+
+    def post(self, request, id):
+        if not request.user.has_perm('baseuser.change_users'):
+            return HttpResponseForbidden("У вас нет прав для обновления профиля.")
+
+        return redirect('users:login')
