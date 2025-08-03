@@ -15,18 +15,22 @@
     <div class="row row-cols-3">
       
       {% for product in products %}
-        <div class="col">
-            <div class="card rounded-3 mt-2 mb-3 ms-2 me-2">
-                <div class="card-header">
-                  {{ product.name }}
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">{{ product.price }}</h5>
-                  <p class="card-text">{{ product.description }}</p>
-                  <a href="{% url 'catalog:product' product.pk %}" class="btn btn-dark rounded-3">Купить</a>
-                </div>
-            </div>
-        </div>
+
+        {% if product.on_sale %}
+          <div class="col">
+              <div class="card rounded-3 mt-2 mb-3 ms-2 me-2">
+                  <div class="card-header">
+                    {{ product.name }}
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">{{ product.price }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <a href="{% url 'catalog:product' product.pk %}" class="btn btn-dark rounded-3">Купить</a>
+                  </div>
+              </div>
+          </div>
+        {% endif %}
+      
       {% endfor %}
 
     </div>

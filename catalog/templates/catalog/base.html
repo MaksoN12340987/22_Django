@@ -24,7 +24,7 @@
                   <div class="d-grid">
                       <ul class="nav flex-column">
                           <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{% url 'catalog:catalog' %}">
+                            <a class="nav-link" aria-current="page" href="{% url 'catalog:home' %}">
                               <div class="d-flex text-bg-primary rounded-3">
                                   <img src="/static/images/home.png" alt="" width="24" height="20" class="d-inline-block mt-2 ms-2">
                                   <div class="flex-grow-0 ms-2 mt-2"><h5>Главная</h5></div>
@@ -52,7 +52,7 @@
                           </li>
                           
                           <li class="nav-item">
-                              <a class="nav-link" href="{% url 'catalog:contacts' %}">
+                              <a class="nav-link" href="{% url 'catalog:create' %}">
                                 <div class="d-flex bg-dark text-white ms-2">
                                     <img src="/static/images/check-box.png" alt="" width="20" height="21" class="d-inline-block mt-1">
                                     <div class="flex-grow-0 mt-1 ms-2"><p>Добавить товар</p></div>
@@ -94,7 +94,7 @@
                     
                     <div class="d-flex bg-dark text-white ms-2">
                         
-                        <img src="../../media/{{ user.preview }}" width="30" height="30" class="d-inline-block mt-1">
+                        <img src="../../../media/{{ user.preview }}" width="30" height="30" class="d-inline-block mt-1">
 
                         <div class="btn-group">
                           <h6 class="ms-2 mt-2 me-1">{{ user.username }}</h6>

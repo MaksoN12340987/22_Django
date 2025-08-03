@@ -1,4 +1,8 @@
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import (
+    AuthenticationForm,
+    UserChangeForm,
+    UserCreationForm,
+)
 
 from .models import BaseUser
 
@@ -86,7 +90,6 @@ class AuthForm(AuthenticationForm):
         self.fields["password"].widget.attrs.update(
             {"class": "form-control rounded-2", "placeholder": "Введите пароль"}
         )
-
 
 
 class RedactProfileForm(UserChangeForm):

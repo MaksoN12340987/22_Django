@@ -7,25 +7,61 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Posts',
+            name="Posts",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=200, unique=True, verbose_name='Заголовок')),
-                ('content', models.TextField(blank=True, null=True, verbose_name='Содержимое')),
-                ('preview', models.ImageField(null=True, upload_to='../media/', verbose_name='Фотография')),
-                ('creation_date', models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')),
-                ('publication_flag', models.BooleanField(default=False, verbose_name='Видно всем?')),
-                ('number_views', models.IntegerField(blank=True, default=0, help_text='Количество просмотров', verbose_name='Количество просмотров')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "title",
+                    models.CharField(
+                        max_length=200, unique=True, verbose_name="Заголовок"
+                    ),
+                ),
+                (
+                    "content",
+                    models.TextField(blank=True, null=True, verbose_name="Содержимое"),
+                ),
+                (
+                    "preview",
+                    models.ImageField(
+                        null=True, upload_to="../media/", verbose_name="Фотография"
+                    ),
+                ),
+                (
+                    "creation_date",
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="Дата создания"
+                    ),
+                ),
+                (
+                    "publication_flag",
+                    models.BooleanField(default=False, verbose_name="Видно всем?"),
+                ),
+                (
+                    "number_views",
+                    models.IntegerField(
+                        blank=True,
+                        default=0,
+                        help_text="Количество просмотров",
+                        verbose_name="Количество просмотров",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Пост',
-                'verbose_name_plural': 'Посты',
-                'ordering': ['title'],
+                "verbose_name": "Пост",
+                "verbose_name_plural": "Посты",
+                "ordering": ["title"],
             },
         ),
     ]

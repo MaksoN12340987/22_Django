@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import BaseUser
 
 
 class Posts(models.Model):
@@ -27,3 +28,4 @@ class Posts(models.Model):
         verbose_name = "Пост"
         verbose_name_plural = "Посты"
         ordering = ["title"]
+        permissions = [("add_comments", "You can leave a comment")]

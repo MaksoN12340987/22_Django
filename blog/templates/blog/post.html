@@ -24,11 +24,15 @@
         </div>
       </div>
 
-      <div class="d-grid text-post-title p-3 ms-5 me-5 mb-2">
-        <div class="d-grid gap-2">
-          <a href="{% url 'blog:delete' post.pk %}" class="btn btn-warning">Удалить пост полностью</a>
+      {% if perms.blog.delete_posts %}
+        <div class="d-grid text-post-title p-3 ms-5 me-5 mb-2">
+          <div class="d-grid gap-2">
+            <a href="{% url 'blog:delete' post.pk %}" class="btn btn-warning">Удалить пост полностью</a>
+          </div>
         </div>
-      </div>
+      {% endif %}
+
+      
 
     </div>
 

@@ -1,15 +1,15 @@
 import logging
 
 from django.contrib.auth import login
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
-from django.urls import reverse_lazy
 from django.http import HttpRequest, HttpResponse, HttpResponseForbidden
-from django.views.generic import (CreateView, DetailView, UpdateView)
 from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, ListView, UpdateView
 
-
-from .forms import AuthForm, UserCreateForm, RedactProfileForm
+from .forms import AuthForm, RedactProfileForm, UserCreateForm
 from .models import BaseUser
 
 logger_views_users = logging.getLogger(__name__)
@@ -47,6 +47,13 @@ class UsersCreate(CreateView):
         send_mail(subject, message, from_email, recipient_list)
 
 
+class UsersList(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+    model = BaseUser
+    template_name = "users/list.html"
+    context_object_name = "users"
+    permission_required = "users.view_baseuser"
+
+
 class Login(LoginView):
     model = BaseUser
     form_class = AuthForm
@@ -58,20 +65,18 @@ class Logout(LogoutView):
     template_name = "users/log_out.html"
 
 
-class Profile(DetailView):
+class UpdateProfile(LoginRequiredMixin, UpdateView):
     model = BaseUser
+    form_class = RedactProfileForm
     template_name = "users/profile.html"
     context_object_name = "user"
 
+    def post(self, request, *args, **kwargs) -> HttpResponse:
+        if not request.user.has_perm("change_baseuser"):
+            return HttpResponseForbidden(
+                "У вас нет прав для обновления данных пользователя."
+            )
 
-class RedactProfile(UpdateView):
-    model = BaseUser
-    form_class = RedactProfileForm
-    template_name = "users/redact.html"
-    context_object_name = "user"
+        return super().post(request, *args, **kwargs)
 
-    def post(self, request, id):
-        if not request.user.has_perm('baseuser.change_users'):
-            return HttpResponseForbidden("У вас нет прав для обновления профиля.")
-
-        return redirect('users:login')
+    success_url = reverse_lazy("users:login")
