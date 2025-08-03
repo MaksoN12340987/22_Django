@@ -1,35 +1,27 @@
-from django import forms  # type: ignore
-
-from .models import Posts  # type: ignore
-
-from django.core.validators import EmailValidator, MaxLengthValidator  # type: ignore
-from django.core.exceptions import ValidationError  # type: ignore
+from django import forms
+from .models import Posts
 
 
 class CreatePostForm(forms.ModelForm):
     class Meta:
         model = Posts
         fields = ["title", "content", "preview", "publication_flag"]
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        
-        self.fields['title'].widget.attrs.update({
-            'class': 'form-control-CreatePost',
-            'placeholder': 'Введите имя'
-        })
-        self.fields['content'].widget.attrs.update({
-            'class': 'form-control-CreatePost',
-            'placeholder': 'Введите фамилию'
-        })
-        self.fields['preview'].widget.attrs.update({
-            'class': 'form-control-CreatePost'
-        })
-        self.fields['publication_flag'].widget.attrs.update({
-            'class': 'form-check-input'
-        })
 
-    def clean(self):
+        self.fields["title"].widget.attrs.update(
+            {"class": "form-control-CreatePost", "placeholder": "Введите заголовок"}
+        )
+        self.fields["content"].widget.attrs.update(
+            {"class": "form-control-CreatePost", "placeholder": "Введите описанние"}
+        )
+        self.fields["preview"].widget.attrs.update({"class": "form-control-CreatePost"})
+        self.fields["publication_flag"].widget.attrs.update(
+            {"class": "form-check-input"}
+        )
+
+    def clean(self):  # type: ignore
         data_array = super().clean()
         title = data_array.get("title")
         content = data_array.get("content")
@@ -37,12 +29,12 @@ class CreatePostForm(forms.ModelForm):
         if content == title:
             self.add_error("content", "Заголовок и описание одинаковые")
 
-        if len(content) < 40:
+        if len(content) < 40:  # type: ignore
             self.add_error("content", "Скудное описание(")
 
         repetitions = 0
         item = ""
-        for i, value in enumerate(content):
+        for i, value in enumerate(content):  # type: ignore
             if i > 0:
                 if item == value:
                     repetitions += 1
@@ -54,7 +46,6 @@ class CreatePostForm(forms.ModelForm):
             self.add_error("content", "Странно много повторяющихся символов...")
 
 
-
 class UpdatePostForm(forms.ModelForm):
     class Meta:
         model = Posts
@@ -62,25 +53,25 @@ class UpdatePostForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        
-        self.fields['title'].widget.attrs.update({
-            'class': 'form-control-CreatePost',
-            'placeholder': 'Отредактируйте заголовок'
-        })
-        self.fields['content'].widget.attrs.update({
-            'class': 'form-control-CreatePost',
-            'placeholder': 'Отредактируйте описание'
-        })
-        self.fields['preview'].widget.attrs.update({
-            'class': 'form-control-CreatePost'
-        })
-        self.fields['publication_flag'].widget.attrs.update({
-            'class': 'form-check-input'
-        })
 
+        self.fields["title"].widget.attrs.update(
+            {
+                "class": "form-control-CreatePost",
+                "placeholder": "Отредактируйте заголовок",
+            }
+        )
+        self.fields["content"].widget.attrs.update(
+            {
+                "class": "form-control-CreatePost",
+                "placeholder": "Отредактируйте описание",
+            }
+        )
+        self.fields["preview"].widget.attrs.update({"class": "form-control-CreatePost"})
+        self.fields["publication_flag"].widget.attrs.update(
+            {"class": "form-check-input"}
+        )
 
-
-    def clean(self):
+    def clean(self):  # type: ignore
         data_array = super().clean()
         title = data_array.get("title")
         content = data_array.get("content")
@@ -88,12 +79,12 @@ class UpdatePostForm(forms.ModelForm):
         if content == title:
             self.add_error("content", "Заголовок и описание одинаковые")
 
-        if len(content) < 40:
+        if len(content) < 40:  # type: ignore
             self.add_error("content", "Скудное описание(")
 
         repetitions = 0
         item = ""
-        for i, value in enumerate(content):
+        for i, value in enumerate(content):  # type: ignore
             if i > 0:
                 if item == value:
                     repetitions += 1

@@ -12,11 +12,10 @@
     <div class="row">
 
         <div class="col-8 bg-gray">
-<<<<<<< HEAD
             <div class="container vh-100">
                 
                 <div class="card rounded-3 ms-2 me-2 p-2 text-start bg-dark text-white">
-                    <form method="post" class="bg-dark text-white">
+                    <form method="post" class="bg-dark text-white" enctype="multipart/form-data">
                         
                         {% csrf_token %}
                         
@@ -25,26 +24,6 @@
                         <button type="submit" class="btn btn-primary">Отправить</button>
                     </form>
                 </div>
-=======
-            <div class="card rounded-3 ms-2 me-2 p-2 text-start">
-                <form method="post">
-                    
-                    {% csrf_token %}
-                    
-                    <div class="mb-3">
-                      <label for="id_title" class="form-label">Заголовок</label>
-                      <input type="text" name="title" value="1" maxlength="200" required id="id_title" class="form-control">
-                    </div>
-                    
-                    <div class="mb-3">
-                      <label for="id_content" class="form-label">Содержимое:</label>
-                      <textarea name="content" cols="40" rows="10" id="id_content" class="form-control"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">Отправить</button>
-                  
-                </form>
->>>>>>> b515b74ecb50180b82f5739d525e6d1da1c0d391
         
             </div>
         </div>

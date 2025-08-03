@@ -1,26 +1,25 @@
-from django.conf import settings  # type: ignore
-from django.conf.urls.static import static  # type: ignore
-from django.contrib import admin  # type: ignore
-from django.urls import include, path  # type: ignore
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib import admin
+from django.urls import include, path
 
-from blog.apps import BlogProjectName
-from catalog.apps import CatalogProjectConfig
+from blog.apps import BlogConfig
+from catalog.apps import CatalogConfig
+from users.apps import UsersConfig
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path(
-        f"{CatalogProjectConfig.name}/",
-        include(
-            f"{CatalogProjectConfig.name}.urls",
-            namespace=f"{CatalogProjectConfig.name}",
-        ),
+        f"{BlogConfig.name}/",
+        include(f"{BlogConfig.name}.urls", namespace=f"{BlogConfig.name}"),
     ),
     path(
-        f"{BlogProjectName.name}/",
-        include(
-            f"{BlogProjectName.name}.urls",
-            namespace=f"{BlogProjectName.name}",
-        ),
+        f"{UsersConfig.name}/",
+        include(f"{UsersConfig.name}.urls", namespace=f"{UsersConfig.name}"),
+    ),
+    path(
+        f"{CatalogConfig.name}/",
+        include(f"{CatalogConfig.name}.urls", namespace=f"{CatalogConfig.name}"),
     ),
 ]
 

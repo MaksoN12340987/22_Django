@@ -1,9 +1,8 @@
 import logging
 
-from django.urls import reverse_lazy  # type: ignore
-from django.views.generic import CreateView, DetailView, ListView, DeleteView  # type: ignore
-
-from catalog.apps import CatalogProjectConfig
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DetailView, ListView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Product
 from .forms import ContactForm
@@ -19,44 +18,38 @@ logger_views.addHandler(file_handler)
 logger_views.setLevel(logging.INFO)
 
 
-class ProductListView(ListView):
+class ProductListView(LoginRequiredMixin, ListView):
     model = Product
-    template_name = f"{CatalogProjectConfig.name}/home.html"
+    template_name = "catalog/home.html"
     context_object_name = "products"
 
 
-class ProductDetailView(DetailView):
+class ProductDetailView(LoginRequiredMixin, DetailView):
     model = Product
-    template_name = f"{CatalogProjectConfig.name}/product.html"
+    template_name = "catalog/product.html"
     context_object_name = "product"
 
 
-class ProductCategoriesListView(ListView):
+class ProductCategoriesListView(LoginRequiredMixin, ListView):
     model = Product
-    template_name = f"{CatalogProjectConfig.name}/catalog.html"
+    template_name = "catalog/catalog.html"
     context_object_name = "products"
 
 
-class OrdersView(ListView):
+class OrdersView(LoginRequiredMixin, ListView):
     model = Product
-    template_name = f"{CatalogProjectConfig.name}/orders.html"
+    template_name = "catalog/orders.html"
     context_object_name = "products"
 
 
-class OrdersDelete(DeleteView):
+class OrdersDelete(LoginRequiredMixin, DeleteView):
     model = Product
-    template_name = f"{CatalogProjectConfig.name}/orders_delite.html"
+    template_name = "catalog/orders_delite.html"
     success_url = reverse_lazy("catalog:orders")
 
 
-class CreateProduct(CreateView):
+class CreateProduct(LoginRequiredMixin, CreateView):
     model = Product
     form_class = ContactForm
-    template_name = f"{CatalogProjectConfig.name}/contacts.html"
+    template_name = "catalog/contacts.html"
     success_url = reverse_lazy("catalog:catalog")
-
-
-# class UsersView(ListView):
-#     model = Users
-#     template_name = f"{CatalogProjectConfig.name}/users.html"
-#     context_object_name = "users"

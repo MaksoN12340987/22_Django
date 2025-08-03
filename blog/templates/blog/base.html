@@ -9,15 +9,15 @@
   <body>
     <div class="container-fluid-home text-center">
         
-        <div class="container-sm text-center bg-primary-main-block">
+        <div class="container-md-blog">
           <div class="row">
 
-            <div class="col-1 bg-primary-top-line"></div>
+            <div class="col-1 bg-primary-top-line border border-dark-subtle"></div>
             
             <div class="col-10 mb-5">
               <div class="container">
                 
-                <div class="container-sm-page_title text-center text-title bg-title rounded-5 mt-4 mb-4 p-2">
+                <div class="container-sm-page_title text-title rounded-5 mt-4 mb-4 p-2">
                   {% block page_title %}<h1>Блог</h1>{% endblock %}
                 </div>
   
@@ -26,14 +26,42 @@
               </div>
             </div>
 
-            <div class="col-1 bg-primary-top-line"></div>
+            <div class="col-1 bg-primary-top-line border border-dark-subtle"></div>
   
           </div>
         </div>
 
         <div class="fixed-bottom">
           <div class="bg-bottom">
+            {% if user.is_authenticated %}
               {% block bottom %}{% endblock %}
+            {% else %}
+
+              <div class="row p-2">
+                <div class="col-3"></div>
+
+                <div class="col-6">
+                  <div class="row p-1">
+                    <div class="col-4 mt-1">
+                    </div>
+                
+                    <div class="col-4 text-post-title">
+                      <div class="d-grid gap-2">
+                        <a href="{% url 'users:login' %}" class="btn btn-success">Авторизоваться</a>
+                      </div>
+                    </div>
+                
+                    <div class="col-4 mt-1">
+                    </div>
+                
+                  </div>
+                </div>
+
+                <div class="col-3"></div>
+
+              </div>
+
+            {% endif %}
           </div>
         </div>
     

@@ -13,7 +13,7 @@
     
     {% for post in posts %}
       <div class="col mb-5">
-        <div class="card rounded-3 ms-3 me-3 bg-post-card text-white-card">
+        <div class="card rounded-3 ms-3 me-3 bg-post-card text-white-card border-secondary">
                 <div class="card-header mt-1 text-post-title">
                   <h5>{{ post.title }}</h5>
                 </div>
@@ -21,7 +21,7 @@
                 <img src="/media/{{ post.preview }}" alt="">
 
                 <div class="card-body">                    
-                    <p class="card-text text-start" style="height: 7rem;">{{ post.content | truncatechars:100 }}</p>
+                    <p class="card-text text-start" style="height: 6rem;">{{ post.content | truncatechars:100 }}</p>
                     
                     <div class="text-start bg-primary-footer text-white-card p-1">
                         <p>Дата публикации: {{ post.creation_date | date:"d M Y" }}</p>
@@ -48,17 +48,40 @@
     <div class="col-3"></div>
 
     <div class="col-6">
-      <div class="row p-1">
+      <div class="row">
         <div class="col-4 mt-1">
-        </div>
-    
-        <div class="col-4 text-post-title">
-          <div class="d-grid gap-2">
-            <a href="{% url 'blog:create' %}" class="btn btn-success">Создать пост</a>
-          </div>
+          <a href="{% url 'catalog:home' %}" class="btn btn-success">Магазин</a>
         </div>
     
         <div class="col-4 mt-1">
+          <a href="{% url 'blog:create' %}" class="btn btn-success">Создать пост</a>
+        </div>
+    
+        <div class="col-4 mt-1 text-end">
+
+            <img src="../../media/{{ user.preview }}" width="30" height="30" class="d-inline-block mt-1">
+
+            <div class="btn-group">
+              <h6 class="ms-2 mt-2 me-3 text-white">{{ user.username }}</h6>
+              
+              <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="visually-hidden">Переключатель выпадающего списка</span>
+              </button>
+              
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'users:profile' user.pk %}">Профиль</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                  <form method="post" action="{% url 'users:logout' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <div class="flex-grow-0 ms-2 mt-1">
+                      <button type="submit" class="btn btn-link nav-link">Выйти</button>
+                    </div>
+                  </form>
+                </li>
+              </ul>
+            
+            </div>
         </div>
     
       </div>

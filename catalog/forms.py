@@ -2,46 +2,51 @@ from django import forms  # type: ignore
 
 from .models import Product  # type: ignore
 
-from config.settings import WORDS_PROHIBITED # type: ignore
+from config.settings import WORDS_PROHIBITED  # type: ignore
 
 
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ["name", "description", "price", "image", "category"]
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        
-        self.fields['name'].widget.attrs.update({
-            'class': 'contact-form-catalog',
-            'placeholder': 'Введите наименование продукта'
-        })
-        self.fields['description'].widget.attrs.update({
-            'class': 'contact-form-catalog',
-            'placeholder': 'Введите описание продукта'
-        })
-        self.fields['price'].widget.attrs.update({
-            'class': 'contact-form-catalog',
-            'type': 'date'
-        })
-        self.fields['image'].widget.attrs.update({
-            'class': 'img'
-        })
+
+        self.fields["name"].widget.attrs.update(
+            {
+                "class": "contact-form-catalog",
+                "placeholder": "Введите наименование продукта",
+            }
+        )
+        self.fields["description"].widget.attrs.update(
+            {
+                "class": "contact-form-catalog",
+                "placeholder": "Введите описание продукта",
+            }
+        )
+        self.fields["price"].widget.attrs.update(
+            {"class": "contact-form-catalog", "type": "date"}
+        )
+        self.fields["image"].widget.attrs.update({"class": "img"})
 
     def clean(self):
         data_array = super().clean()
         name = data_array.get("name")
         description = data_array.get("description")
 
-        if name.lower() in WORDS_PROHIBITED: # type: ignore
-            self.add_error("name", "В наименовании продукта присутствуют недопустимые слова")
-        elif description.lower() in WORDS_PROHIBITED: # type: ignore
-            self.add_error("description", "В описании продукта присутствуют недопустимые слова")
+        if name.lower() in WORDS_PROHIBITED:  # type: ignore
+            self.add_error(
+                "name", "В наименовании продукта присутствуют недопустимые слова"
+            )
+        elif description.lower() in WORDS_PROHIBITED:  # type: ignore
+            self.add_error(
+                "description", "В описании продукта присутствуют недопустимые слова"
+            )
 
         repetitions_name = 0
         item = ""
-        for i, value in enumerate(name): # type: ignore
+        for i, value in enumerate(name):  # type: ignore
             if i > 0:
                 if item == value:
                     repetitions_name += 1
@@ -51,7 +56,7 @@ class ContactForm(forms.ModelForm):
 
         repetitions_description = 0
         item = ""
-        for i, value in enumerate(description): # type: ignore
+        for i, value in enumerate(description):  # type: ignore
             if i > 0:
                 if item == value:
                     repetitions_description += 1
@@ -67,8 +72,8 @@ class ContactForm(forms.ModelForm):
         return data_array
 
     def clean_price(self):
-        price = self.cleaned_data.get('price')
-        if price < 0: # type: ignore
-            self.add_error('price', 'Цена продукта не должна быть отрицательной')
-        
+        price = self.cleaned_data.get("price")
+        if price < 0:  # type: ignore
+            self.add_error("price", "Цена продукта не должна быть отрицательной")
+
         return price
