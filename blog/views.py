@@ -13,6 +13,8 @@ from django.views.generic import (
 from .forms import CreatePostForm, UpdatePostForm
 from .models import Posts
 
+from django.core.cache import cache
+
 logger_views = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
 file_formatter = logging.Formatter(

@@ -15,6 +15,7 @@ from django.views.generic import (
 )
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
+from django.core.cache import cache
 
 from .forms import CreateForm, UpdateProduct
 from .models import Product
@@ -38,6 +39,13 @@ class ProductListView(LoginRequiredMixin, ListView):
     model = Product
     template_name = "catalog/home.html"
     context_object_name = "products"
+    
+    def get_queryset(self):
+        queryset = cache.get('ProductListView_queryset')
+        if not queryset:
+            queryset = super().get_queryset()
+            cache.set('authors_queryset', queryset, 60 * 15)  # Кешируем данные на 15 минут
+        return queryset
 
 
 
@@ -71,6 +79,13 @@ class ProductCategoriesListView(LoginRequiredMixin, ListView):
     model = Product
     template_name = "catalog/catalog.html"
     context_object_name = "products"
+    
+    def get_queryset(self):
+        queryset = cache.get('ProductCategoriesListView_queryset')
+        if not queryset:
+            queryset = super().get_queryset()
+            cache.set('authors_queryset', queryset, 60 * 15)  # Кешируем данные на 15 минут
+        return queryset
 
 
 
@@ -78,6 +93,13 @@ class OrdersView(LoginRequiredMixin, ListView):
     model = Product
     template_name = "catalog/orders.html"
     context_object_name = "products"
+    
+    def get_queryset(self):
+        queryset = cache.get('OrdersView_queryset')
+        if not queryset:
+            queryset = super().get_queryset()
+            cache.set('authors_queryset', queryset, 60 * 15)  # Кешируем данные на 15 минут
+        return queryset
 
 
 
@@ -109,7 +131,6 @@ class CreateProduct(LoginRequiredMixin, CreateView):
         self.permission_user = request.user.has_perm("catalog.can_unpublish_product")
         # self.user_id = request.user.id
         # logger_views.info(self.user_id)
-
         return super().post(request, *args, **kwargs)
 
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
