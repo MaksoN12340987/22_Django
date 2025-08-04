@@ -2,9 +2,8 @@ import logging
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models.base import Model as Model
-from django.db.models.query import QuerySet
 from django.forms import BaseModelForm
-from django.http import HttpRequest, HttpResponse, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseForbidden
 from django.urls import reverse_lazy
 from django.views.generic import (
     CreateView,
@@ -19,6 +18,7 @@ from django.core.cache import cache
 
 from .forms import CreateForm, UpdateProduct
 from .models import Product
+from .services import AvailabilityProductModeratorRights
 
 from users.models import BaseUser
 
@@ -34,19 +34,19 @@ logger_views.addHandler(file_handler)
 logger_views.setLevel(logging.INFO)
 
 
-
 class ProductListView(LoginRequiredMixin, ListView):
     model = Product
     template_name = "catalog/home.html"
     context_object_name = "products"
-    
+
     def get_queryset(self):
-        queryset = cache.get('ProductListView_queryset')
+        queryset = cache.get("ProductListView_queryset")
         if not queryset:
             queryset = super().get_queryset()
-            cache.set('authors_queryset', queryset, 60 * 15)  # Кешируем данные на 15 минут
+            cache.set(
+                "authors_queryset", queryset, 60 * 15
+            )  # Кешируем данные на 15 минут
         return queryset
-
 
 
 class ProductView(LoginRequiredMixin, UpdateView):
@@ -63,44 +63,37 @@ class ProductView(LoginRequiredMixin, UpdateView):
         return super().post(request, *args, **kwargs)
 
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
-        data = form.cleaned_data
-
-        if not data["on_sale"]:
-            if not self.permission_user:
-                return HttpResponseForbidden(
-                    "У вас нет прав для удаления или снятия с продажи этого продукта."
-                )
+        error = AvailabilityProductModeratorRights.permission_user_superuser_cleaned_data(self.request, form.cleaned_data)
+        if error:
+            return HttpResponseForbidden(error)
 
         return super().form_valid(form)
-
 
 
 class ProductCategoriesListView(LoginRequiredMixin, ListView):
     model = Product
     template_name = "catalog/catalog.html"
     context_object_name = "products"
-    
+
     def get_queryset(self):
-        queryset = cache.get('ProductCategoriesListView_queryset')
+        queryset = cache.get("ProductCategoriesListView_queryset")
         if not queryset:
             queryset = super().get_queryset()
-            cache.set('authors_queryset', queryset, 60 * 15)  # Кешируем данные на 15 минут
+            cache.set("authors_queryset", queryset, 60 * 15)
         return queryset
-
 
 
 class OrdersView(LoginRequiredMixin, ListView):
     model = Product
     template_name = "catalog/orders.html"
     context_object_name = "products"
-    
+
     def get_queryset(self):
-        queryset = cache.get('OrdersView_queryset')
+        queryset = cache.get("OrdersView_queryset")
         if not queryset:
             queryset = super().get_queryset()
-            cache.set('authors_queryset', queryset, 60 * 15)  # Кешируем данные на 15 минут
+            cache.set("authors_queryset", queryset, 60 * 15)
         return queryset
-
 
 
 class OrdersDelete(LoginRequiredMixin, DeleteView):
@@ -109,16 +102,11 @@ class OrdersDelete(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("catalog:orders")
 
     def post(self, request, *args, **kwargs) -> HttpResponse:
-        if not request.user.has_perm("catalog.delete_product"):
-            return HttpResponseForbidden("У вас нет права на удаления этого продукта.")
-        elif not request.user.is_superuser: # type: ignore
-            logger_views.info(f"пользователь не superuser")
-            obj = self.get_object()
-            if not obj.owner == request.user: # type: ignore
-                return HttpResponseForbidden("У вас нет прав для удаления этого продукта.")
+        error = AvailabilityProductModeratorRights.permission_user_superuser_object(request, self.get_object())
+        if error:
+            return HttpResponseForbidden(error)
 
         return super().post(request, *args, **kwargs)
-
 
 
 class CreateProduct(LoginRequiredMixin, CreateView):
@@ -126,23 +114,13 @@ class CreateProduct(LoginRequiredMixin, CreateView):
     form_class = CreateForm
     template_name = "catalog/create.html"
     success_url = reverse_lazy("catalog:catalog")
-    
-    def post(self, request, *args, **kwargs) -> HttpResponse:
-        self.permission_user = request.user.has_perm("catalog.can_unpublish_product")
-        # self.user_id = request.user.id
-        # logger_views.info(self.user_id)
-        return super().post(request, *args, **kwargs)
 
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
-        data = form.cleaned_data
-        logger_views.info(data)
+        error = AvailabilityProductModeratorRights.permission_user_superuser_cleaned_data(self.request, form.cleaned_data)
+        if error:
+            return HttpResponseForbidden(error)
 
-        if not data["on_sale"]:
-            if not self.permission_user:
-                return HttpResponseForbidden(
-                    "У вас нет прав для удаления или снятия с продажи этого продукта."
-                )
-                
+        # Привязываем текущего пользователя
         form.instance.owner = self.request.user
 
         return super().form_valid(form)

@@ -1,8 +1,8 @@
-from django import forms  # type: ignore
+from django import forms
 
-from config.settings import WORDS_PROHIBITED  # type: ignore
+from config.settings import WORDS_PROHIBITED
 
-from .models import Product  # type: ignore
+from .models import Product
 
 
 class CreateForm(forms.ModelForm):
@@ -93,7 +93,15 @@ class CreateForm(forms.ModelForm):
 class UpdateProduct(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ["name", "description", "price", "image", "category", "on_sale", "owner"]
+        fields = [
+            "name",
+            "description",
+            "price",
+            "image",
+            "category",
+            "on_sale",
+            "owner",
+        ]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -23,7 +23,6 @@ class Posts(models.Model):
 
     def __str__(self) -> str:
         return f"{self.title} {self.content}"
-    
 
     class Meta:
         verbose_name = "Пост"
