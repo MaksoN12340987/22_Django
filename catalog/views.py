@@ -19,6 +19,9 @@ from django.utils.decorators import method_decorator
 from .forms import CreateForm, UpdateProduct
 from .models import Product
 
+from users.models import BaseUser
+
+
 logger_views = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
 file_formatter = logging.Formatter(
@@ -84,11 +87,13 @@ class OrdersDelete(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("catalog:orders")
 
     def post(self, request, *args, **kwargs) -> HttpResponse:
-        if not request.user.has_perm("catalog.delite_product"):
-            return HttpResponseForbidden("У вас нет прав для удаления этого продукта.")
-        obj = self.get_object()
-        if not obj.owner == self.request.user: # type: ignore
-            return HttpResponseForbidden("У вас нет прав для удаления этого продукта.")
+        if not request.user.has_perm("catalog.delete_product"):
+            return HttpResponseForbidden("У вас нет права на удаления этого продукта.")
+        elif not request.user.is_superuser: # type: ignore
+            logger_views.info(f"пользователь не superuser")
+            obj = self.get_object()
+            if not obj.owner == request.user: # type: ignore
+                return HttpResponseForbidden("У вас нет прав для удаления этого продукта.")
 
         return super().post(request, *args, **kwargs)
 
@@ -99,11 +104,11 @@ class CreateProduct(LoginRequiredMixin, CreateView):
     form_class = CreateForm
     template_name = "catalog/create.html"
     success_url = reverse_lazy("catalog:catalog")
-
+    
     def post(self, request, *args, **kwargs) -> HttpResponse:
         self.permission_user = request.user.has_perm("catalog.can_unpublish_product")
-        self.user_id = request.user.id  # type: ignore
-        logger_views.info(self.user_id)
+        # self.user_id = request.user.id
+        # logger_views.info(self.user_id)
 
         return super().post(request, *args, **kwargs)
 
@@ -116,11 +121,7 @@ class CreateProduct(LoginRequiredMixin, CreateView):
                 return HttpResponseForbidden(
                     "У вас нет прав для удаления или снятия с продажи этого продукта."
                 )
-        elif data["owner"].id != self.user_id:
-            return HttpResponseForbidden(
-                """<div class="container-fluid-base text-start">
-                        <h1 class="ms-5 mt-5 p-5">Укажите, в поле "Владелец" автором себя</h1>
-                        </div>"""
-            )
+                
+        form.instance.owner = self.request.user
 
         return super().form_valid(form)

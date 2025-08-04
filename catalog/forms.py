@@ -15,7 +15,6 @@ class CreateForm(forms.ModelForm):
             "image",
             "category",
             "on_sale",
-            "owner",
         ]
 
     def __init__(self, *args, **kwargs):
@@ -41,9 +40,6 @@ class CreateForm(forms.ModelForm):
         )
         self.fields["image"].widget.attrs.update({"class": "img"})
         self.fields["on_sale"].widget.attrs.update({"class": "form-check"})
-        self.fields["owner"].widget.attrs.update(
-            {"class": "form-select", "type": "date"}
-        )
 
     def clean(self):
         data_array = super().clean()
@@ -97,7 +93,7 @@ class CreateForm(forms.ModelForm):
 class UpdateProduct(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ["name", "description", "price", "image", "category", "on_sale"]
+        fields = ["name", "description", "price", "image", "category", "on_sale", "owner"]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -119,6 +115,9 @@ class UpdateProduct(forms.ModelForm):
         )
         self.fields["image"].widget.attrs.update({"class": "contact-form"})
         self.fields["on_sale"].widget.attrs.update({"class": "form-check"})
+        self.fields["owner"].widget.attrs.update(
+            {"class": "form-select", "type": "date"}
+        )
 
     def clean(self):
         data_array = super().clean()

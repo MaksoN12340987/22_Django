@@ -35,6 +35,10 @@
           <h6>Стоимость: {{ product.price }}</h6>
         </div>
 
+        <div>
+          <h6>Продавец: {{ product.owner.sername }}</h6>
+        </div>
+
       </div>
 
     {% if perms.catalog.can_unpublish_product %}
