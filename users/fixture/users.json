@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$1000000$LnoSw12C2M3qU0RiNZP0fA$Qg1SXzogTbqMoQhpakCMbtpkXgdI4vwzlripqErgnr8=",
-        "last_login": "2025-08-04T13:51:03.383Z",
+        "last_login": "2025-08-04T14:07:26.673Z",
         "is_superuser": true,
         "username": "Admin",
         "first_name": "Admin",
@@ -25,19 +25,21 @@
     "pk": 2,
     "fields": {
         "password": "pbkdf2_sha256$1000000$zcQdCgrTZpKhjUoUFI6Cff$f68IiKq7AXUKjSHXj399X++yop1vLlsQ6+HYPpCbNe8=",
-        "last_login": "2025-08-04T13:42:26.342Z",
+        "last_login": "2025-08-04T13:42:26Z",
         "is_superuser": false,
         "username": "Max",
         "first_name": "Maksim",
         "last_name": "Andreev",
         "is_staff": false,
         "is_active": true,
-        "date_joined": "2025-08-04T13:41:33.699Z",
+        "date_joined": "2025-08-04T13:41:33Z",
         "preview": "users/_DSC1134_075746_1_95lglwK.JPG",
         "email": "andrianov_maksim@outlook.com",
         "phone_number": "9990001122",
         "location": "Russia",
-        "groups": [],
+        "groups": [
+            1
+        ],
         "user_permissions": []
     }
 },
@@ -46,20 +48,22 @@
     "pk": 3,
     "fields": {
         "password": "pbkdf2_sha256$1000000$MFCgVXXnY9RTCUpaQ6VsFX$rbCqQLc+EK4uwk5lLEVPjK0aT09n3tmXkJXtV65jVwk=",
-        "last_login": "2025-08-04T13:58:08.449Z",
+        "last_login": "2025-08-04T13:58:08Z",
         "is_superuser": false,
         "username": "Ordinary",
         "first_name": "Standart",
         "last_name": "User",
         "is_staff": false,
         "is_active": true,
-        "date_joined": "2025-08-04T13:57:58.593Z",
+        "date_joined": "2025-08-04T13:57:58Z",
         "preview": "users/20240825_093103.jpg",
         "email": "user@domen.com",
         "phone_number": "9990001122",
         "location": "Russia",
         "groups": [],
-        "user_permissions": []
+        "user_permissions": [
+            27
+        ]
     }
 }
 ]
