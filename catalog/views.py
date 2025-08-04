@@ -13,6 +13,8 @@ from django.views.generic import (
     ListView,
     UpdateView,
 )
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 
 from .forms import CreateForm, UpdateProduct
 from .models import Product
@@ -28,12 +30,14 @@ logger_views.addHandler(file_handler)
 logger_views.setLevel(logging.INFO)
 
 
+@method_decorator(cache_page(60 * 10), name='dispatch')
 class ProductListView(LoginRequiredMixin, ListView):
     model = Product
     template_name = "catalog/home.html"
     context_object_name = "products"
 
 
+@method_decorator(cache_page(60 * 120), name='dispatch')
 class ProductView(LoginRequiredMixin, UpdateView):
     model = Product
     form_class = UpdateProduct
@@ -59,18 +63,21 @@ class ProductView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
+@method_decorator(cache_page(60 * 10), name='dispatch')
 class ProductCategoriesListView(LoginRequiredMixin, ListView):
     model = Product
     template_name = "catalog/catalog.html"
     context_object_name = "products"
 
 
+@method_decorator(cache_page(60 * 120), name='dispatch')
 class OrdersView(LoginRequiredMixin, ListView):
     model = Product
     template_name = "catalog/orders.html"
     context_object_name = "products"
 
 
+@method_decorator(cache_page(60 * 120), name='dispatch')
 class OrdersDelete(LoginRequiredMixin, DeleteView):
     model = Product
     template_name = "catalog/orders_delite.html"
@@ -86,6 +93,7 @@ class OrdersDelete(LoginRequiredMixin, DeleteView):
         return super().post(request, *args, **kwargs)
 
 
+@method_decorator(cache_page(60 * 120), name='dispatch')
 class CreateProduct(LoginRequiredMixin, CreateView):
     model = Product
     form_class = CreateForm
