@@ -20,12 +20,15 @@
                     {{ product.name }}
                     </div>
                     <div class="card-body">
+
                       <img src="../../media/{{ product.image }}" class="card-img-top p-3" alt="...">
+
                       <form method="get">
                         {% csrf_token %}
                         <a href="{% url 'catalog:delete' product.pk %}" class="btn btn-danger">Удалить из карзины</a>
                       </form>
-                  </div>
+
+                    </div>
               </div>
           </div>
         

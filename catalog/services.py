@@ -50,8 +50,10 @@ class AvailabilityProductModeratorRights:
         """
         if not request.user.is_superuser:  # type: ignore
             logger_services.info(f"пользователь не superuser")
-            
+
             if not data["on_sale"] and not request.user.has_perm(
                 "catalog.can_unpublish_product"
             ):
-                return "У вас нет прав для удаления или снятия с продажи этого продукта."
+                return (
+                    "У вас нет прав для удаления или снятия с продажи этого продукта."
+                )

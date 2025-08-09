@@ -1,27 +1,21 @@
 import logging
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.cache import cache
 from django.db.models.base import Model as Model
 from django.forms import BaseModelForm
 from django.http import HttpResponse, HttpResponseForbidden
 from django.urls import reverse_lazy
-from django.views.generic import (
-    CreateView,
-    DeleteView,
-    DetailView,
-    ListView,
-    UpdateView,
-)
-from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
-from django.core.cache import cache
+from django.views.decorators.cache import cache_page
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  UpdateView)
+
+from users.models import BaseUser
 
 from .forms import CreateForm, UpdateProduct
 from .models import Product
 from .services import AvailabilityProductModeratorRights
-
-from users.models import BaseUser
-
 
 logger_views = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
@@ -63,7 +57,11 @@ class ProductView(LoginRequiredMixin, UpdateView):
         return super().post(request, *args, **kwargs)
 
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
-        error = AvailabilityProductModeratorRights.permission_user_superuser_cleaned_data(self.request, form.cleaned_data)
+        error = (
+            AvailabilityProductModeratorRights.permission_user_superuser_cleaned_data(
+                self.request, form.cleaned_data
+            )
+        )
         if error:
             return HttpResponseForbidden(error)
 
@@ -102,7 +100,9 @@ class OrdersDelete(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("catalog:orders")
 
     def post(self, request, *args, **kwargs) -> HttpResponse:
-        error = AvailabilityProductModeratorRights.permission_user_superuser_object(request, self.get_object())
+        error = AvailabilityProductModeratorRights.permission_user_superuser_object(
+            request, self.get_object()
+        )
         if error:
             return HttpResponseForbidden(error)
 
@@ -116,7 +116,11 @@ class CreateProduct(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy("catalog:catalog")
 
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
-        error = AvailabilityProductModeratorRights.permission_user_superuser_cleaned_data(self.request, form.cleaned_data)
+        error = (
+            AvailabilityProductModeratorRights.permission_user_superuser_cleaned_data(
+                self.request, form.cleaned_data
+            )
+        )
         if error:
             return HttpResponseForbidden(error)
 
