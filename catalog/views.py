@@ -8,14 +8,11 @@ from django.http import HttpResponse, HttpResponseForbidden
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
-from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
-                                  UpdateView)
-
-from users.models import BaseUser
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
 from .forms import CreateForm, UpdateProduct
-from .models import Product
-from .services import AvailabilityProductModeratorRights
+from .models import Product, Category
+from .services import AvailabilityProductModeratorRights, ListProductsByCategory
 
 logger_views = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
@@ -35,14 +32,13 @@ class ProductListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = cache.get("ProductListView_queryset")
-        if not queryset:
-            queryset = super().get_queryset()
-            cache.set(
-                "authors_queryset", queryset, 60 * 15
-            )  # Кешируем данные на 15 минут
+        # if not queryset:
+        #     queryset = super().get_queryset()
+        #     cache.set("authors_queryset", queryset, 60 * 15)
         return queryset
 
 
+@method_decorator(cache_page(60 * 15), name="dispatch")
 class ProductView(LoginRequiredMixin, UpdateView):
     model = Product
     form_class = UpdateProduct
@@ -77,8 +73,28 @@ class ProductCategoriesListView(LoginRequiredMixin, ListView):
         queryset = cache.get("ProductCategoriesListView_queryset")
         if not queryset:
             queryset = super().get_queryset()
-            cache.set("authors_queryset", queryset, 60 * 15)
+        #     cache.set("authors_queryset", queryset, 60 * 15)
+        
+        self.queryset_models = queryset
+        
         return queryset
+
+    def get_context_data(self, **kwargs) -> dict:
+        context = super().get_context_data(**kwargs)
+        
+        all_categories = Category.objects.all()
+        context['all_categories'] = all_categories
+
+        for category in all_categories:
+            context[f"{category.pk}"] = (
+                ListProductsByCategory.list_product_in_category(
+                    self.queryset_models, category
+                )
+            )
+
+        logger_views.info(context)
+
+        return context
 
 
 class OrdersView(LoginRequiredMixin, ListView):
