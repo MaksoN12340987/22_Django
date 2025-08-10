@@ -32,8 +32,8 @@ class ProductListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = cache.get("ProductListView_queryset")
-        # if not queryset:
-        #     queryset = super().get_queryset()
+        if not queryset:
+            queryset = super().get_queryset()
         #     cache.set("authors_queryset", queryset, 60 * 15)
         return queryset
 
@@ -75,7 +75,7 @@ class ProductCategoriesListView(LoginRequiredMixin, ListView):
             queryset = super().get_queryset()
         #     cache.set("authors_queryset", queryset, 60 * 15)
         
-        self.queryset_models = queryset
+        self.queryset_products = queryset
         
         return queryset
 
@@ -83,14 +83,14 @@ class ProductCategoriesListView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         
         all_categories = Category.objects.all()
-        context['all_categories'] = all_categories
+        context['sorted_category'] = ListProductsByCategory.list_product_in_category(self.queryset_products, all_categories)
 
-        for category in all_categories:
-            context[f"{category.pk}"] = (
-                ListProductsByCategory.list_product_in_category(
-                    self.queryset_models, category
-                )
-            )
+        # for category in all_categories:
+        #     context[f"{category.name}"] = (
+        #         ListProductsByCategory.list_product_in_category(
+        #             self.queryset_models, category
+        #         )
+        #     )
 
         logger_views.info(context)
 
