@@ -83,14 +83,13 @@ class ProductCategoriesListView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         
         all_categories = Category.objects.all()
-        context['sorted_category'] = ListProductsByCategory.list_product_in_category(self.queryset_products, all_categories)
 
-        # for category in all_categories:
-        #     context[f"{category.name}"] = (
-        #         ListProductsByCategory.list_product_in_category(
-        #             self.queryset_models, category
-        #         )
-        #     )
+        for category in all_categories:
+            context[f"{category.name}"] = (
+                ListProductsByCategory.list_product_in_category(
+                    self.queryset_products, category
+                )
+            )
 
         logger_views.info(context)
 

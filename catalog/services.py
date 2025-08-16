@@ -64,15 +64,12 @@ class AvailabilityProductModeratorRights:
 class ListProductsByCategory:
 
     @staticmethod
-    def list_product_in_category(queryset_models, categories):
+    def list_product_in_category(queryset_models, category):
         result_list = []
-        
-        for category in categories:
-            pass
 
-        # for product in queryset_models:
-        #     if product.category == category:
-        #         result_list.append(product)
-        # logger_services.info(f"{category.name} {result_list}")
+        for product in queryset_models:
+            if product.category == category:
+                result_list.append(product)
+        logger_services.info(f"{category.name} {result_list}")
 
         return result_list
