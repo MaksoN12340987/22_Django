@@ -83,6 +83,7 @@ class ProductCategoriesListView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         
         all_categories = Category.objects.all()
+        context["all_categories"] = all_categories
 
         for category in all_categories:
             context[f"{category.name}"] = (
