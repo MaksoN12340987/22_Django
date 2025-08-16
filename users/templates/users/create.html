@@ -36,17 +36,32 @@
 {% block bottom %}
   <div class="container text-center p-1">
     
-    <div class="row p-1">
+    <div class="row p-1 me-2">
       {% if user.is_authenticated %}
-        <div class="col">
-          <a href="{% url 'users:logout' %}" class="btn btn-success rounded-2">Выход</a>
+        
+      <div class="col">
+          <form method="post" action="{% url 'users:logout' %}" style="display: inline;">
+            {% csrf_token %}
+            <div class="flex-grow-0 ms-2 mt-1">
+              <button type="submit" class="btn btn-success rounded-2">Выйти</button>
+            </div>
+          </form>
         </div>
+        
+        {% if user.is_superuser %}
+          <div class="col">
+            <a href="{% url 'users:list' %}" class="btn btn-success rounded-2 me-4">Все юзеры</a>
+          </div>
+        {% endif %}
+
       {% else %}
+        
         <div class="col">
-          <a href="{% url 'users:login' %}" class="btn btn-success rounded-2">Войти</a>
+          <a href="{% url 'users:login' %}" class="btn btn-success rounded-2 ms-2">Войти</a>
         </div>
+        
         <div class="col">
-          <a href="{% url 'users:create' %}" class="btn btn-success rounded-2">Обновить</a>
+          <a href="{% url 'users:create' %}" class="btn btn-success rounded-2 ms-1">Обновить</a>
         </div>
       {% endif %}
     </div>

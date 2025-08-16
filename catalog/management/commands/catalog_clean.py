@@ -16,7 +16,7 @@ class Command(BaseCommand):
                     self.style.SUCCESS(f"Successfully delete: {student.name}")
                 )
             else:
-                self.stdout.write(self.style.WARNING(f"Student already not exists"))
+                self.stdout.write(self.style.WARNING("Student already not exists"))
 
         categories = Category.objects.all()
 
@@ -27,4 +27,4 @@ class Command(BaseCommand):
                     self.style.SUCCESS(f"Successfully delete: {category.name}")
                 )
             else:
-                self.stdout.write(self.style.WARNING(f"Student already not exists"))
+                self.stdout.write(self.style.WARNING("Student already not exists"))

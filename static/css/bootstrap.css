@@ -5,7 +5,7 @@
 * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 */
 :root,
-[data-bs-theme=light] {
+[data-bs-theme=light] {3
   /* Цвет беграунда верхней строки */
   --bs-primary-rgb-top-line: 4, 207, 207;
 
@@ -303,8 +303,8 @@
 }
 
 .container-md-blog {
-  --bs-form-select-bg-img-home: url("../images/china_three.jpg");
-  background-image: var(--bs-form-select-bg-img-home);
+  /* --bs-form-select-bg-img-home: url("../images/china_three.jpg");
+  background-image: var(--bs-form-select-bg-img-home); */
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
   width: 100%;
@@ -363,6 +363,12 @@
 }
 
 
+
+.border-photo {
+  border-width: 6px;
+  --bs-rgb: 0, 194, 78;
+  border-color: rgba(var(--bs-rgb), 1) !important;
+}
 
 
 
@@ -432,6 +438,23 @@
   --bs-bg-opacity: 1;
   background-image: var(--bg-img-top-line);
 }
+
+
+
+
+.bg-item {
+  --bs-rgb-title: 160, 160, 160;
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-rgb-title), 0.84) !important;
+}
+
+.text-white-card {
+  text-align: left !important;
+  --bs-text-opacity: 1;
+  color: rgb(255, 255, 255) !important;
+}
+
+
 
 
 .text-post-title {
@@ -8277,10 +8300,7 @@ textarea.form-control-lg {
   border-color: rgba(var(--bs-success-rgb), var(--bs-border-opacity)) !important;
 }
 
-.border-info {
-  --bs-border-opacity: 1;
-  border-color: rgba(var(--bs-info-rgb), var(--bs-border-opacity)) !important;
-}
+
 
 .border-warning {
   --bs-border-opacity: 1;

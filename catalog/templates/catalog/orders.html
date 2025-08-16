@@ -15,18 +15,20 @@
         
         {% for product in products %}
           <div class="col mb-5">
-              <div class="card rounded-3 ms-5 me-5">
+              <div class="card rounded-3 ms-4 me-4">
                   <div class="card-header">
                     {{ product.name }}
                     </div>
                     <div class="card-body">
-                      <h5 class="card-title">100$</h5>
-                      <p class="card-text">Распродажа только сегодня скидка 15% на всё</p>
+
+                      <img src="../../media/{{ product.image }}" class="card-img-top p-3" alt="...">
+
                       <form method="get">
                         {% csrf_token %}
                         <a href="{% url 'catalog:delete' product.pk %}" class="btn btn-danger">Удалить из карзины</a>
                       </form>
-                  </div>
+
+                    </div>
               </div>
           </div>
         

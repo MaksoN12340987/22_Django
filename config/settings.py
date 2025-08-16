@@ -2,8 +2,6 @@ import logging
 import os
 from pathlib import Path
 
-from django.urls import reverse_lazy
-
 logger_views_setings = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
 file_formatter = logging.Formatter(
@@ -14,7 +12,7 @@ file_handler.setFormatter(file_formatter)
 logger_views_setings.addHandler(file_handler)
 logger_views_setings.setLevel(logging.INFO)
 
-from dotenv import load_dotenv  # type: ignore
+from dotenv import load_dotenv
 
 from blog.apps import BlogConfig
 from catalog.apps import CatalogConfig
@@ -27,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 AUTH_USER_MODEL = "users.BaseUser"
 LOGIN_REDIRECT_URL = "catalog:home"
-LOGOUT_REDIRECT_URL = "users:logout"
+LOGOUT_REDIRECT_URL = "users:login"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -169,3 +167,13 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # List of words prohibited from use
 
 WORDS_PROHIBITED = os.getenv("WORDS_PROHIBITED", default="").split(".")
+
+
+CACHES = {
+    "default": {
+        "BACKEND": os.getenv(
+            "BACKEND", default="django.core.cache.backends.redis.RedisCache"
+        ),
+        "LOCATION": os.getenv("LOCATION", default="redis://127.0.0.1:6379/1"),
+    }
+}

@@ -1,16 +1,13 @@
-from typing import Any
+from django.db import models
 
-from django.db import models  # type: ignore
-
-# from PIL import Image # type: ignore
-from config.settings import MEDIA_ROOT
+from users.models import BaseUser
 
 
 class Posts(models.Model):
     title = models.CharField(max_length=200, verbose_name="Заголовок", unique=True)
     content = models.TextField(null=True, blank=True, verbose_name="Содержимое")
     preview = models.ImageField(
-        upload_to="../media/",
+        upload_to="posts/",
         verbose_name="Фотография",
         null=True,
     )
@@ -32,3 +29,4 @@ class Posts(models.Model):
         verbose_name = "Пост"
         verbose_name_plural = "Посты"
         ordering = ["title"]
+        permissions = [("add_comments", "You can leave a comment")]
