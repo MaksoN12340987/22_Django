@@ -1,5 +1,7 @@
 import logging
 
+from .models import Category
+
 logger_services = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
 file_formatter = logging.Formatter(
@@ -49,7 +51,7 @@ class AvailabilityProductModeratorRights:
             None: если всё ок
         """
         if not request.user.is_superuser:  # type: ignore
-            logger_services.info(f"пользователь не superuser")
+            logger_services.info("пользователь не superuser")
 
             if not data["on_sale"] and not request.user.has_perm(
                 "catalog.can_unpublish_product"
@@ -57,3 +59,17 @@ class AvailabilityProductModeratorRights:
                 return (
                     "У вас нет прав для удаления или снятия с продажи этого продукта."
                 )
+
+
+class ListProductsByCategory:
+
+    @staticmethod
+    def list_product_in_category(queryset_models, category):
+        result_list = []
+
+        for product in queryset_models:
+            if product.category == category:
+                result_list.append(product)
+        logger_services.info(f"{category.name} {result_list}")
+
+        return result_list

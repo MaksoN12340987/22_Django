@@ -13,10 +13,12 @@
   <div class="container-fluid text-center p-1">
     <div class="row p-4">
 
-      <h2>Категория: Молочные продукты</h2>
-      {% for product in products %}
+      {% for category in all_categories %}
 
-        {% if product.category_id == 1 %}
+        <h2>Категория: {{ category.name }} продукты</h2>
+
+        {% if 'Молочные' == category.name %}
+          {% for product in Молочные %}
             <div class="col-sm-6 mb-3 mb-sm-0 p-2">
               <div class="card ms-5 me-5">
         
@@ -34,18 +36,16 @@
                 </div>
               </div>
             </div>
+          {% endfor %}
         {% endif %}
-      {% endfor %}
-      
-      <h2>Категория: Рыбные продукты</h2>
-      {% for product in products %}
 
-        {% if product.category_id == 2 %}
+        {% if 'Бакалея' == category.name %}
+          {% for product in Бакалея %}
             <div class="col-sm-6 mb-3 mb-sm-0 p-2">
               <div class="card ms-5 me-5">
         
-                <div class="d-flex">
-                  <img src="../../media/{{ product.image }}" class="card-img-top">
+                <div class="container-fluid">
+                  <img src="../../media/{{ product.image }}" class="card-img-top mt-2" alt="...">
                 </div>
         
                 <div class="card-body">
@@ -58,18 +58,17 @@
                 </div>
               </div>
             </div>
+          {% endfor %}
         {% endif %}
-      {% endfor %}
 
-      <h2>Категория: Бакалея</h2>
-      {% for product in products %}
 
-        {% if product.category_id == 3 %}
+        {% if 'Сладости' == category.name %}
+          {% for product in Сладости %}
             <div class="col-sm-6 mb-3 mb-sm-0 p-2">
               <div class="card ms-5 me-5">
         
-                <div class="d-flex">
-                  <img src="../../media/{{ product.image }}" class="card-img-top" alt="...">
+                <div class="container-fluid">
+                  <img src="../../media/{{ product.image }}" class="card-img-top mt-2" alt="...">
                 </div>
         
                 <div class="card-body">
@@ -82,18 +81,17 @@
                 </div>
               </div>
             </div>
+          {% endfor %}
         {% endif %}
-      {% endfor %}
 
-      <h2>Категория: Сладости</h2>
-      {% for product in products %}
-        
-        {% if product.category_id == 4 %}
+
+        {% if 'Рыбные' == category.name %}
+          {% for product in Рыбные %}
             <div class="col-sm-6 mb-3 mb-sm-0 p-2">
               <div class="card ms-5 me-5">
         
-                <div class="d-flex">
-                  <img src="../../media/{{ product.image }}" class="card-img-top" alt="...">
+                <div class="container-fluid">
+                  <img src="../../media/{{ product.image }}" class="card-img-top mt-2" alt="...">
                 </div>
         
                 <div class="card-body">
@@ -106,18 +104,17 @@
                 </div>
               </div>
             </div>
+          {% endfor %}
         {% endif %}
-      {% endfor %}
-    
-      <h2>Категория: Прочие продукты</h2>
-      {% for product in products %}
-        
-        {% if product.category_id == 5 %}
+
+
+        {% if 'Прочие' == category.name %}
+          {% for product in Прочие %}
             <div class="col-sm-6 mb-3 mb-sm-0 p-2">
               <div class="card ms-5 me-5">
         
-                <div class="d-flex">
-                  <img src="../../media/{{ product.image }}" class="card-img-top" alt="...">
+                <div class="container-fluid">
+                  <img src="../../media/{{ product.image }}" class="card-img-top mt-2" alt="...">
                 </div>
         
                 <div class="card-body">
@@ -130,7 +127,10 @@
                 </div>
               </div>
             </div>
+          {% endfor %}
         {% endif %}
+
+        
       {% endfor %}
 
     </div>
